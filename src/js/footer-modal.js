@@ -1,14 +1,14 @@
 
-const refs = {
-    openModalEl: document.querySelector('[data-team-modal-open]'),
-    closeModalBtnEl: document.querySelector('[data-team-modal-close]'),
-    backdropEl: document.querySelector('.backdrop'),
-};
+// import { openModalEl, closeModalBtnEl, backdropEl } from "./refs";
 
-refs.openModalEl.addEventListener('click', toggleBackdrop);
-refs.closeModalBtnEl.addEventListener('click', toggleBackdrop);
+const openModalEl = document.querySelector('[data-team-modal-open]');
+const closeModalBtnEl = document.querySelector('[data-team-modal-close]');
+const backdropEl = document.querySelector('.backdrop');
+
+openModalEl.addEventListener('click', toggleBackdrop);
+closeModalBtnEl.addEventListener('click', toggleBackdrop);
 
 function toggleBackdrop() {
     document.body.classList.toggle('modal-open');
-    refs.backdropEl.classList.toggle('is-hidden');
+    backdropEl.classList.toggle('is-hidden');
 } 
