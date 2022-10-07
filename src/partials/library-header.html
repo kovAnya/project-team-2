@@ -1,4 +1,4 @@
-<header class="header">
+<header class="lib-header">
   <div class="container header__section">
     <nav class="site-nav">
       <a href="./index.html" class="header__logo">
@@ -9,14 +9,15 @@
       </a>
       <ul class="header__list">
         <li class="header__list-item">
-          <a
-            href="./index.html"
-            class="header__list-link header__list-link--accent"
-            >HOME</a
-          >
+          <a href="./index.html" class="header__list-link">HOME</a>
         </li>
         <li class="header__list-item">
-          <a href="./library.html" class="header__list-link"> MY LIBRARY </a>
+          <a
+            href="./library.html"
+            class="header__list-link header__list-link--accent"
+          >
+            MY LIBRARY
+          </a>
         </li>
         <li class="header__list-item">
           <a href="./index.html" class="header__list-link auth-btn">
@@ -29,32 +30,21 @@
               class="header__icon"
               id="icon-autorization-checked"
             >
-              <use href="/src/images/sprite.svg#icon-autorization-check"></use>
-            </svg> -->
+              <use
+                href="/src/images/sprite.svg#icon-autorization-check"
+              ></use></svg> -->
           </a>
         </li>
       </ul>
     </nav>
 
-    <form action="submit" class="header__form">
-      <div class="header__form-search">
-        <input
-          type="text"
-          name="serch_film"
-          autofocus
-          placeholder="Movie search"
-          class="header__form-input js-input"
-        />
-        <button type="submit" class="header__search">
-          <!-- <svg class="header__form-icon" width="12" height="12">
-            <use href="/src/images/sprite.svg#header-search"></use>
-          </svg> -->
+    <ul class="library__btns">
+      <li>
+        <button class="library__button button--accent js-watched">
+          WATCHED
         </button>
-      </div>
-    </form>
-
-    <p id="header__error-message" class="header__error">
-      Search result not successful. Enter the correct movie name and try again.
-    </p>
+      </li>
+      <li><button class="library__button js-queue">QUEUE</button></li>
+    </ul>
   </div>
 </header>
