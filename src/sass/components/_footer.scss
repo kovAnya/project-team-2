@@ -1,1 +1,56 @@
-// footer styles
+//==========================================
+//============ footer styles ==============//
+//==========================================
+
+.footer {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+    .footer--flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    } 
+}
+
+.footer__first {
+    margin-bottom: 10px;  
+        @media screen and (min-width: 768px) {
+            margin-right: 4px;
+            margin-bottom: 0;
+        }
+}
+
+.footer__second {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.14;
+    text-align: center;
+    color: var(--footer-grey-color);
+        @media screen and (min-width: 768px) {
+            font-size: 16px;
+            line-height: 1.19;
+        }
+}
+
+.footer__text--margin {
+    margin-right: 10px;
+}
+
+.footer__icon {
+    fill: var(--accent-color);
+    margin-left: 10px;
+}
+
+.footer__link{
+    text-decoration: underline;
+    cursor: pointer;
+}
