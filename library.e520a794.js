@@ -1,2 +1,2 @@
 var openModalEl=document.querySelector("[data-team-modal-open]"),closeModalBtnEl=document.querySelector("[data-team-modal-close]"),backdropEl=document.querySelector(".backdrop");function toggleBackdrop(){document.body.classList.toggle("modal-open"),backdropEl.classList.toggle("is-hidden")}openModalEl.addEventListener("click",toggleBackdrop),closeModalBtnEl.addEventListener("click",toggleBackdrop);
-//# sourceMappingURL=index.faa31de3.js.map
+//# sourceMappingURL=library.e520a794.js.map
