@@ -37,13 +37,18 @@
 }
 .tui-prev {
     order: -1;
-    background-image: url('../images/svg/sprite.svg#icon-arrow-left');
+    background-image: url('../images/svg/arrow-left.svg');
     background-repeat: no-repeat;
+    font-size: 0;
+    background-position: center;
 }
 
 .tui-next {
     order: 1;
-    background-image: url('../images/svg/sprite.svg#icon-arrow-right');
+    background-image: url('../images/svg/arrow-right.svg');
+    background-repeat: no-repeat;
+    font-size: 0;
+    background-position: center;
 }
 
 

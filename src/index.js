@@ -6,3 +6,7 @@ import './js/modal-log-in';
 import './js/log-in';
 
 renderMoviesTrending(fetchMoviesTrending());
+
+
+import './js/footer-modal';
+import './js/genres';
