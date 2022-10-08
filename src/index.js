@@ -1,1 +1,1 @@
-import './js/pagination.js';
+import './js/modal_film';
