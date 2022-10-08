@@ -1,0 +1,33 @@
+:root {
+  // размер шрифтов
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+
+  --title-text-color: rgba(0, 0, 0, 1);
+
+  /* пагинация */
+  --accent-color: rgba(255, 107, 8, 1);
+
+  --white-text-color: rgba(255, 255, 255, 1);
+  --footer-grey-color: rgba(129, 129, 129, 1);
+  --underline-color: rgba(255, 0, 27, 1);
+
+  /* рейтинг, кнопка на модалке, на стр моя библиотека кнопка акцент */
+  --modal-accent-color: rgba(255, 107, 1, 1);
+
+  /* доп цвета, не вижу где используються */
+  // -- color: rgba(140, 140, 140, 1);
+  // -- color: rgba(84, 84, 84, 1);
+  // -- color: rgba(247, 247, 247, 1);
+
+  // -- color: rgba(0, 0, 0, 0.56);
+
+  // -- color: rgba(255, 0, 27, 1);
+  // -- color: rgba(255, 107, 2, 1);
+}
+
+$header-bgc: rgba(0, 0, 0, 0.56);
+$white-text: #ffffff;
+$error-text: #ff001b;
+$orange-hover: #ff6b01;
+$orange-btn: #ff6b01;
