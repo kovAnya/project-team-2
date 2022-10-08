@@ -4,3 +4,7 @@ import { renderMoviesTrending } from './js/renderMoviesTrending';
 import { fetchMoviesTrending } from './js/fetchMoviesTrending';
 
 renderMoviesTrending(fetchMoviesTrending());
+
+
+import './js/footer-modal';
+import './js/genres';
