@@ -1,4 +1,5 @@
-import { ApiKey } from './refs';
+import { ApiKey, page } from './refs';
+
 const axios = require('axios').default;
 
 // import allGenres from '../data/genres.json';
@@ -7,9 +8,10 @@ import { renderMoviesTrending } from './renderMoviesTrending';
 
 const searchFilmForm = document.querySelector('.header__form');
 const searchFilmInput = document.querySelector('.header__form-input');
+const moviesElement = document.querySelector('.movies');
+
 // let pError = document.querySelector('.header__error');
 let inputValue = '';
-let page = '';
 // const URL_SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&language=en-US&query=${inputValue}&page=1&include_adult=false`;
 
 // Создание нового свойства с годом (для всех)
@@ -23,16 +25,28 @@ let page = '';
 //   return genres;
 // }g
 
-async function fetchFilms() {
+async function fetchFilms(page) {
   try {
     const fetchResult = await axios.get(
       `https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&language=en-US&query=${inputValue}&page=${page}&include_adult=false`
     );
+    console.log(fetchResult.data);
     return fetchResult.data;
   } catch (error) {
     console.error(error);
   }
 }
+
+async function searchFilm(e) {
+  e.preventDefault();
+  inputValue = searchFilmInput.value;
+  console.log(searchFilmInput.value);
+  searchFilmForm.reset();
+  moviesElement.innerHTML = '';
+  await renderMoviesTrending(fetchFilms(page));
+}
+
+searchFilmForm.addEventListener('submit', searchFilm);
 
 // .then(data => data.json())
 
@@ -61,13 +75,3 @@ async function fetchFilms() {
 //   return renderFilms;
 // })
 // .catch(err => console.log(err));
-
-export default async function searchFilm(e) {
-  e.preventDefault();
-  inputValue = searchFilmInput.value;
-  console.log(searchFilmInput.value);
-  searchFilmForm.reset();
-  await renderMoviesTrending(fetchFilms(1));
-}
-
-searchFilmForm.addEventListener('submit', searchFilm);
