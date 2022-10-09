@@ -1,4 +1,4 @@
-import Pagination from 'tui-pagination';
+import Pagination from 'tui-pagination'
 
 const options = { // below default value of options
      totalItems: '',
@@ -34,4 +34,5 @@ const container = document.getElementById('tui-pagination-container');
 const pagination = new Pagination(container, options);
 
 pagination.getCurrentPage();
+
 
