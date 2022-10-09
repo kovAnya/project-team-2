@@ -5,9 +5,9 @@ const URL = 'https://api.themoviedb.org/3/trending';
 
 let mediaType = 'all';
 let timeWindow = 'day';
-let page = 1
 
-export async function fetchMoviesTrending () {
+
+export async function fetchMoviesTrending (page) {
     
 try{
     const responce = await axios.get(`${URL}/${mediaType}/${timeWindow}?api_key=${ApiKey}&page=${page}`);

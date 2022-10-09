@@ -2,8 +2,9 @@
 // import './js/pagination';
 import { renderMoviesTrending } from './js/renderMoviesTrending';
 import { fetchMoviesTrending } from './js/fetchMoviesTrending';
+import {page} from './js/refs';
 
-renderMoviesTrending(fetchMoviesTrending());
+renderMoviesTrending(fetchMoviesTrending(page));
 
 
 import './js/footer-modal';
