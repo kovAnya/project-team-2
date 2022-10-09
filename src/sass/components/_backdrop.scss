@@ -1,0 +1,25 @@
+.backdrop_is-open {
+  background-color: white;
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.modal__close {
+  cursor: pointer;
+  top: 8px;
+  right: 8px;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  padding-top: 3px;
+}
+
+.modal__close-button {
+  fill: currentColor;
+}
+
+.modal__close-button:hover {
+  fill: var(--acent-modal-hover);
+}
