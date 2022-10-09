@@ -3,6 +3,14 @@
 import { renderMoviesTrending } from './js/renderMoviesTrending';
 import { fetchMoviesTrending } from './js/fetchMoviesTrending';
 import './js/spinner';
+import './js/modal-log-in';
+import './js/log-in';
+import './js/footer-modal';
+import './js/genres';
 
 renderMoviesTrending(fetchMoviesTrending());
+
+
+
+
 
