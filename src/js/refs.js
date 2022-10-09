@@ -28,6 +28,7 @@ const refs = {
   signIn: document.querySelector('.signIn_now'),
   signInLink: document.querySelector('.signIn_now__link'),
   logOut: document.querySelector('#header-logOut'),
+  loader: document.querySelector(".loader"),
 };
 export const {
   modalBackdrop,
@@ -56,6 +57,7 @@ export const {
   signIn,
   signInLink,
   logOut,
+  loader,
 } = refs;
 
 // До футера
