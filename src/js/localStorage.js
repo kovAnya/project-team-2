@@ -16,7 +16,7 @@ function save(key, value) {
 
 function load(key) {
   try {
-    return localStorage.getItem(key);
+    return JSON.parse(localStorage.getItem(key));
   } catch (error) {
     Notify.failure('Local storage load error');
   }
