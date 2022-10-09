@@ -1,0 +1,87 @@
+.movies {
+  @media screen and (min-width: 320px) {
+    padding-top: 20px;
+  }
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 60px;
+  }
+}
+
+.movie {
+  position: relative;
+  @media screen and (min-width: 320px) {
+    padding-bottom: 20px;
+    width: 100%;
+  }
+  @media screen and (min-width: 768px) {
+    padding-bottom: 32px;
+    width: 336px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-bottom: 32px;
+    width: 395px;
+  }
+}
+
+.movie__cover-inner {
+  position: relative;
+}
+
+.movie__cover {
+  @media screen and (min-width: 320px) {
+    max-width: 100%;
+    height: 100%;
+  }
+  @media screen and (min-width: 1280px) {
+    max-width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+}
+
+.movie__info {
+  @media screen and (min-width: 320px) {
+    padding-top: 8px;
+  }
+  @media screen and (min-width: 768px) {
+    padding-top: 12px;
+  }
+}
+
+.movie__title {
+  color: var(--title-text-color);
+  font-style: medium;
+  @media screen and (min-width: 320px) {
+    font-size: 12px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
+}
+
+.movie__category {
+  color: $orange-hover;
+  font-style: medium;
+  @media screen and (min-width: 320px) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
+}
+
+.movie__year {
+  color: $orange-hover;
+  font-style: medium;
+  @media screen and (min-width: 320px) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
+}
