@@ -287,3 +287,12 @@
 .header__form-input:hover ~ .header__search {
   stroke: $orange-hover;
 }
+
+.change_theme:hover {
+  stroke: $orange-hover;
+  fill: $orange-hover;
+  border-color: $orange-hover;
+}
+.header__search:hover {
+  stroke: $orange-hover;
+}
