@@ -1,27 +1,30 @@
-import { localStorage } from './localStorage';
+import { localStorageUs } from './localStorage';
 
-export const THEME_STORAGE = 'theme';
 const themeSwither = document.querySelectorAll(`.change_theme`);
 const changeThemeCssLink = document.querySelector(`[title= "theme"]`);
-const dark = 'onDark';
-const light = 'onLight';
+const THEMES = {
+  dark: 'onDark',
+  light: 'onLight',
+};
+
+localStorageUs.save('theme', THEMES.light);
 
 themeSwither.forEach(swither => swither.addEventListener(`click`, changeTheme));
 
 function changeTheme() {
-  localStorage.save(THEME_STORAGE, this.dataset.theme);
+  localStorageUs.save('theme', this.dataset.theme);
 
-  if (this.dataset.theme === dark) {
+  if (this.dataset.theme === THEMES.dark) {
     changeThemeCssLink.disabled = false;
   }
-  if (this.dataset.theme === light) {
+  if (this.dataset.theme === THEMES.light) {
     changeThemeCssLink.disabled = true;
   }
 }
 
-let activeTheme = localStorage.load(THEME_STORAGE);
+let activeTheme = localStorageUs.load('theme');
 
-if (activeTheme === null || activeTheme === light) {
+if (activeTheme === null || activeTheme === THEMES.light) {
   changeThemeCssLink.disabled = true;
 } else {
   changeThemeCssLink.disabled = false;

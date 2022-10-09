@@ -1,9 +1,5 @@
 /* Стиль кнопки (перемикача)*/
-.change_theme {
-  border: 1px solid white;
-  border-radius: 5px;
-  box-shadow: 1px 4px 6px 0px rgb(255 255 255 / 16%);
-  fill: white;
+button.change_theme {
 }
 
 button.change_theme[data-theme='onLight'] {
@@ -16,50 +12,4 @@ button.change_theme[data-theme='onDark'] {
 
 body {
   background-color: #222222;
-}
-
-.film-card__discription {
-  color: rgba(255, 107, 8, 1);
-}
-
-.film-card__title {
-  color: white;
-}
-
-.pagination_button {
-  color: #fff;
-}
-
-.pagination_button:hover {
-  color: black;
-}
-
-.pagination_button-dots:hover {
-  color: #fff;
-}
-
-.pagination_button-active:hover {
-  background-color: #ff6b01;
-  color: #fff;
-}
-
-.pagination_button-arrow_left,
-.pagination_button-arrow_right {
-  background-color: #333;
-}
-
-h2.swiper-title {
-  color: #ffffff;
-}
-
-.film-list.js-main-film-list {
-  color: #ffffff;
-}
-
-section.films-section h2.film-card__title {
-  color: #ffffff;
-}
-
-footer.footer {
-  background-color: #151515;
 }
