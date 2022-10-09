@@ -1,0 +1,15 @@
+/* Стиль кнопки (перемикача)*/
+button.change_theme {
+}
+
+button.change_theme[data-theme='onLight'] {
+  display: block;
+}
+
+button.change_theme[data-theme='onDark'] {
+  display: none;
+}
+
+body {
+  background-color: #222222;
+}
