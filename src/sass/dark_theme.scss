@@ -1,5 +1,11 @@
 /* Стиль кнопки (перемикача)*/
-button.change_theme {
+.change_theme {
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 1px 4px 6px 0px rgb(255 255 255 / 16%);
+  fill: white;
+  background-color: transparent;
 }
 
 button.change_theme[data-theme='onLight'] {
