@@ -7,8 +7,6 @@ const THEMES = {
   light: 'onLight',
 };
 
-localStorageUs.save('theme', THEMES.light);
-
 themeSwither.forEach(swither => swither.addEventListener(`click`, changeTheme));
 
 function changeTheme() {
