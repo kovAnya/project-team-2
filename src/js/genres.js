@@ -16,7 +16,6 @@ async function fetchGenres() {
 async function saveMovieGenresInStorage() {
     try {
         const {genres}  = await fetchGenres();
-        console.log('response', genres);
         localStorage.setItem(LOCAL_KEY_GENRES, JSON.stringify(genres));
     }
     catch (error) {
