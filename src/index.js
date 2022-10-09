@@ -2,6 +2,7 @@
 import './js/pagination';
 import { renderMoviesTrending } from './js/renderMoviesTrending';
 import { fetchMoviesTrending } from './js/fetchMoviesTrending';
+import './js/themeSwitcher';
 import { page } from './js/refs';
 import './js/spinner';
 import './js/modal-log-in';
