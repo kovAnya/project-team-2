@@ -25,15 +25,15 @@ async function saveMovieGenresInStorage() {
 }
 
 // Выбор нужного жанра (по id) из списка в локальном хранилище
-function getMovieGenres(id) {
+export function getMovieGenres(id) {
     const listOfAllMovieGenres = localStorage.getItem(LOCAL_KEY_GENRES);
     const allMovieGenres = JSON.parse(listOfAllMovieGenres);
         for (const movieGenre of allMovieGenres) {
             if (movieGenre.id === id) {
-                console.log('name', movieGenre.name);
+                
                 return movieGenre.name;
             }
-            console.log('неизвестен')
+            
         }
 }
 
