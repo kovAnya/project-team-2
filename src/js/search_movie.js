@@ -21,7 +21,7 @@ let page = '';
 // function getGenres() {
 //   const { genres } = allGenres;
 //   return genres;
-// }
+// }g
 
 async function fetchFilms() {
   try {
