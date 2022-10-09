@@ -2,12 +2,25 @@
   <div class="container header__section">
     <nav class="site-nav">
       <a href="./index.html" class="header__logo">
-        <!-- <svg class="header__icon" width="24" height="24">
-          <use href="/src/images/sprite.svg#header-logo"></use>
-        </svg> -->
+        <svg class="header__icon" width="24" height="24">
+          <use href="/src/images/svg/sprite.svg#icon-film-main"></use>
+        </svg>
         <span class="header__logo-text">Filmoteka </span>
       </a>
       <ul class="header__list">
+        <li class="header__list-item">
+          <button class="change_theme" data-theme="onLight">
+            <svg class="moon-icon" width="24" height="24">
+              <use href="/src/images/svg/sprite.svg#icon-Sun"></use>
+            </svg>
+          </button>
+
+          <button class="change_theme" data-theme="onDark">
+            <svg class="moon-icon" width="24" height="24">
+              <use href="/src/images/svg/sprite.svg#icon-moon"></use>
+            </svg>
+          </button>
+        </li>
         <li class="header__list-item">
           <a
             href="./index.html"
@@ -24,19 +37,10 @@
             MY LIBRARY
           </a>
         </li>
-        <li class="header__list-item header-logOut">
-          <a class="header__list-link" id="header-logOut">
-            <!-- <svg class="header__nav_icon" width="10" height="10">
-                  <use href="./images/sprite/symbol-defs.svg#icon-sad"></use>
-                </svg> -->
-            LOG OUT
-          </a>
-        </li>
-        <li class="header__list-item header-logIn">
-          <a class="header__list-link" id="header-logIn" data-modal-open>
-            LOG IN
-            <!-- <svg class="header__icon icon-autorization" width="24" height="24">
-              <use href="/src/images/sprite.svg#icon-autorization"></use></svg
+        <li class="header__list-item">
+          <a href="./index.html" class="header__list-link auth-btn">
+            <svg class="header__icon icon-autorization" width="24" height="24">
+              <use href="/src/images/svg/sprite.svg#icon-key"></use></svg
             ><svg
               style="display: none"
               width="11"
@@ -44,8 +48,8 @@
               class="header__icon"
               id="icon-autorization-checked"
             >
-              <use href="/src/images/sprite.svg#icon-autorization-check"></use>
-            </svg> -->
+              <use href="/src/images/svg/sprite.svg#icon-key"></use>
+            </svg>
           </a>
         </li>
       </ul>
@@ -61,10 +65,9 @@
           class="header__form-input js-input"
         />
         <button type="submit" class="header__search">
-          click
-          <!-- <svg class="header__form-icon" width="12" height="12">
-            <use href="/src/images/sprite.svg#header-search"></use>
-          </svg> -->
+          <svg class="header__form-icon" width="12" height="12">
+            <use href="/src/images/svg/sprite.svg#icon-search-main"></use>
+          </svg>
         </button>
       </div>
     </form>
