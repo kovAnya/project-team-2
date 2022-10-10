@@ -67,6 +67,21 @@ background-color: rgba(129, 129, 129, 0.7);
     }
 }
 
+.movie_cover {
+  // object-fit: cover;
+    width: 280px;
+    height: 398px;
+  @media screen and (min-width: 768px) {
+      width: 336px;
+      height: 455px;
+    }
+  
+    @media screen and (min-width: 1280px) {
+      width: 394px;
+      height: 574px;
+}
+}
+
 .movie__info {
     font-size: 12px;
       line-height: 1.16;
