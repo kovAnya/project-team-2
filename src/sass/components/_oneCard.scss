@@ -1,7 +1,7 @@
 .gallery {
     padding-top: 20px;  
     padding-bottom: 40px;
-    min-height: 80vh;
+    min-height: 50vh;
 
     @media screen and (min-width: 768px) {
     padding-top: 60px;
@@ -68,7 +68,7 @@ background-color: rgba(129, 129, 129, 0.7);
 }
 
 .movie_cover {
-  // object-fit: cover;
+    object-fit: cover;
     width: 280px;
     height: 398px;
   @media screen and (min-width: 768px) {
