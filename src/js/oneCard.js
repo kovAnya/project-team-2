@@ -1,6 +1,6 @@
 import 'lazysizes'
 
-export function card(poster_path, title, genre_ids, release_date) {
+export function card(poster_path, title, genre_ids, release_date, id) {
   const oneCard = `
       <div class="movie">
         <div class="movie__cover-inner">
@@ -8,6 +8,7 @@ export function card(poster_path, title, genre_ids, release_date) {
             data-src="${poster_path}"
             class="movie_cover lazyload"
             alt="${title}"
+            data-id="${id}"
           />
         </div>
         <div class="movie__info">

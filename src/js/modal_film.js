@@ -1,12 +1,31 @@
+
 import { fetchMoviesTrending } from "./fetchMoviesTrending";
 import {getMovieGenres} from './genres';
-import {renderMoviesTrending} from './renderMoviesTrending';
+import {renderMoviesTrending, processingReleasedYear, processingGenre, processingNameFilm} from './renderMoviesTrending';
 
 const backdrop = document.querySelector('.modal__backdrop');
 const filmsListRef = document.querySelector('.movies'); 
 const closeBtnRef = document.querySelector('.closeModal');
 const modal = document.querySelector('.modal__container');
 
+let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
+let fileSize = 'w400';
+
+
+  ////////////////////////////////Получаем данные с Локального Хранилища
+
+function dataInLocalStorage() {
+  let dataInLocalStorage = localStorage.getItem("dataInApi");
+  let parsedDataInLocalStorage = '';
+
+  try{
+  return parsedDataInLocalStorage = JSON.parse(dataInLocalStorage)
+  
+  } catch(error) {
+    console.warn("Ошибка во время парса данных с локального хранилища")
+  }
+}
+//////////////////////////////////////////////////////////
 
 filmsListRef.addEventListener('click', onFilmCardClick);
 closeBtnRef.addEventListener('click', onCloseBtnClick);
@@ -16,30 +35,44 @@ function onFilmCardClick(e) {
   document.body.style.overflow = 'hidden';
   document.addEventListener('keydown', onEscBtnPress);
   document.addEventListener('click', onBackdropClick);
+  /////////Проверка id фильма по которому кликнули
+  let idImage = e.target.dataset.id;
+  let idImageNumber = Number(idImage);
+ 
+  /////Данные с Локального хранилища
+  let dataLocalStorage = dataInLocalStorage()
+  let arrsFilm = dataLocalStorage.results ////Обьект с 20 фильмами
+  let changeFilm = arrsFilm.find (film => film.id === idImageNumber)
+  console.log(changeFilm)
+  ///////////////Переменные для отрисовки Модалки
+  let poster_path = changeFilm.poster_path;
+  let title = processingNameFilm(changeFilm.title, changeFilm.name);
+  let vote_average = changeFilm.vote_average
+  let vote_count = changeFilm.vote_count
+  let popularity = changeFilm.popularity
+  let genre_ids = processingGenre(changeFilm.genre_ids)
+  let overview = changeFilm.overview
 
-  modal.insertAdjacentHTML('afterbegin', makeFilmModalMarkup());
+  modal.insertAdjacentHTML('afterbegin', makeFilmModalMarkup(poster_path, title, vote_average, vote_count, popularity, genre_ids, overview));
   console.log(onFilmCardClick);
 }
 
 function makeFilmModalMarkup(
   poster_path,
-  original_title,
   title,
-  name,
   vote_average,
   vote_count,
+  popularity,
   genre_ids,
   overview,
-  popularity) {
+  ) {
   return `
   <div class="film__image">
-  <img class="image" src="https://image.tmdb.org/t/p/original${poster_path}" alt=${
-     title || original_title || name
-     }/>
+  <img class="image" src="${BASE_URL_IMAGE}/${fileSize}/${poster_path}" alt=${title}/>
     </div>
     <div class="film__information">
       <div>
-        <h2 class="film__title">${title || original_title || name}</h2>
+        <h2 class="film__title">${title}</h2>
         <ul>
           <li class="film__item">
             <p class="film__details">Vote / Votes</p>
@@ -55,7 +88,7 @@ function makeFilmModalMarkup(
           </li>
           <li class="film__item">
             <p class="film__details">Original title</p>
-            <p>${title || original_title || name}</p>
+            <p>${title}</p>
           </li>
           <li class="film__item">
             <p class="film__details">Genre</p>
@@ -100,4 +133,5 @@ function onBackdropClick(e) {
     onCloseBtnClick();
   }
 }
+
 
