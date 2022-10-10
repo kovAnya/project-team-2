@@ -16,12 +16,12 @@ export function processingReleasedYear (release_date, first_air_date) {
  if (release_date) {
     /// Если в данных есть значение release_date то данный год берем с него
     let ReleasedData = release_date.split('');
-   return releasedYear = ReleasedData.splice(0, 4).join('');
+   return ReleasedData.splice(0, 4).join('');
   } else if (first_air_date) {
     let ReleasedData = first_air_date.split(''); /// Если нет release_date то берем год с first_air_date
-   return releasedYear = ReleasedData.splice(0, 4).join('');
+   return ReleasedData.splice(0, 4).join('');
   } else {
-   return releasedYear = '';
+   return '';
   }
 }
 //////////////////////////////////////////////////
