@@ -31,6 +31,11 @@ filmsListRef.addEventListener('click', onFilmCardClick);
 closeBtnRef.addEventListener('click', onCloseBtnClick);
 
 function onFilmCardClick(e) {
+  if (e.target.nodeName !== "IMG") {
+    return;
+  }
+
+
   backdrop.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
   document.addEventListener('keydown', onEscBtnPress);
@@ -43,7 +48,7 @@ function onFilmCardClick(e) {
   let dataLocalStorage = dataInLocalStorage()
   let arrsFilm = dataLocalStorage.results ////Обьект с 20 фильмами
   let changeFilm = arrsFilm.find (film => film.id === idImageNumber)
-  console.log(changeFilm)
+  
   ///////////////Переменные для отрисовки Модалки
   let poster_path = changeFilm.poster_path;
   let title = processingNameFilm(changeFilm.title, changeFilm.name);
@@ -54,7 +59,7 @@ function onFilmCardClick(e) {
   let overview = changeFilm.overview
 
   modal.insertAdjacentHTML('afterbegin', makeFilmModalMarkup(poster_path, title, vote_average, vote_count, popularity, genre_ids, overview));
-  console.log(onFilmCardClick);
+  
 }
 
 function makeFilmModalMarkup(
