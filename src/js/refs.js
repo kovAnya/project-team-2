@@ -1,7 +1,6 @@
 export const ApiKey = '3ec430a354e7116e3d9f9a41b82b2275';
 export let page = 1;
 
-
 // До авторизації
 const refs = {
   modalBackdrop: document.querySelector('.modal-backdrop'),
@@ -30,7 +29,7 @@ const refs = {
   signIn: document.querySelector('.signIn_now'),
   signInLink: document.querySelector('.signIn_now__link'),
   logOut: document.querySelector('#header-logOut'),
-  loader: document.querySelector(".loader"),
+  loader: document.querySelector('.loader'),
 };
 export const {
   modalBackdrop,
@@ -72,3 +71,7 @@ export const backdropEl = document.querySelector('.backdrop');
 // export const backdropEl = document.querySelector('[data-footer-backdrop]');
 // export const modalFooterEl = document.querySelector('[data-footer-modal]');
 // export const closeModalFooterBtnEl = document.querySelector('[data-team-modal-close]');
+
+// До бібліотеки
+export const openWatchedBtn = document.querySelector('.js-watched');
+export const openQueueBtn = document.querySelector('.js-queue');

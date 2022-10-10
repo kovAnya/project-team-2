@@ -8,5 +8,6 @@ import './js/modal-log-in';
 import './js/log-in';
 import './js/footer-modal';
 import './js/genres';
+import './js/watchedLib';
 
 renderMoviesTrending(fetchMoviesTrending(page));
