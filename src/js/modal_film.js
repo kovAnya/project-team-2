@@ -6,6 +6,7 @@ import {
   processingReleasedYear,
   processingGenre,
   processingNameFilm,
+  processingPoster,
 } from './renderMoviesTrending';
 import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
 
@@ -16,6 +17,7 @@ const modal = document.querySelector('.modal__container');
 
 let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
 let fileSize = 'w400';
+let stubPicture = 'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp'
 
 ////////////////////////////////Получаем данные с Локального Хранилища
 
@@ -53,7 +55,7 @@ function onFilmCardClick(e) {
   let changeFilm = arrsFilm.find(film => film.id === idImageNumber);
 
   ///////////////Переменные для отрисовки Модалки
-  let poster_path = changeFilm.poster_path;
+  let poster_path = processingPoster(changeFilm.poster_path);
   let title = processingNameFilm(changeFilm.title, changeFilm.name);
   let vote_average = changeFilm.vote_average;
   let vote_count = changeFilm.vote_count;
@@ -107,7 +109,7 @@ function makeFilmModalMarkup(
 ) {
   return `
   <div class="film__image">
-  <img class="image" src="${BASE_URL_IMAGE}/${fileSize}/${poster_path}" alt=${title}/>
+  ${poster_path !== null ? `<img class="image" src="${BASE_URL_IMAGE}/${fileSize}/${poster_path}" alt=${title}/>` : ''}
     </div>
     <div class="film__information">
       <div>
