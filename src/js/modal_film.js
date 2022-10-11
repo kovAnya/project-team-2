@@ -22,7 +22,7 @@ let stubPicture =
 
 ////////////////////////////////Получаем данные с Локального Хранилища
 
-export function dataInLocalStorage() {
+function dataInLocalStorage() {
   let dataInLocalStorage = localStorage.getItem('dataInApi');
   let parsedDataInLocalStorage = '';
 
@@ -37,7 +37,7 @@ export function dataInLocalStorage() {
 filmsListRef.addEventListener('click', onFilmCardClick);
 closeBtnRef.addEventListener('click', onCloseBtnClick);
 
-export function onFilmCardClick(e) {
+function onFilmCardClick(e) {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
@@ -99,7 +99,7 @@ export function onFilmCardClick(e) {
   });
 }
 
-export function makeFilmModalMarkup(
+function makeFilmModalMarkup(
   poster_path,
   title,
   vote_average,
@@ -162,7 +162,7 @@ export function makeFilmModalMarkup(
 }
 
 //Функція закриття по кнопці
-export function onCloseBtnClick() {
+function onCloseBtnClick() {
   const filmImg = document.querySelector('.film__image');
   const filmInfo = document.querySelector('.film__information');
   filmImg.remove();
@@ -175,14 +175,14 @@ export function onCloseBtnClick() {
 }
 
 //Функція закриття по ESC
-export function onEscBtnPress(e) {
+function onEscBtnPress(e) {
   if (e.code === 'Escape') {
     onCloseBtnClick();
   }
 }
 
 //Функція закриття модалки поза межами модалки
-export function onBackdropClick(e) {
+function onBackdropClick(e) {
   if (e.target === backdrop) {
     onCloseBtnClick();
   }
