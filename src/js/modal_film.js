@@ -131,13 +131,21 @@ function makeFilmModalMarkup(
           </li>
           <li class="film__item">
             <p class="film__details">Genre</p>
-            <p class="film__info">${genre_ids}</p>
+            ${
+              genre_ids.length !== 0
+                ? `<p class="film__info">${genre_ids}</p>`
+                : `<p class="film__info">No information</p>`
+            }
           </li>
         </ul>
       </div>
       <div>
         <h3 class="film__about__title">About</h3>
-        <p class="film__about__text">${overview}</p>
+        ${
+          overview
+            ? `<p class="film__about__text">${overview}</p>`
+            : `<p class="film__about__text">No information</p>`
+        }
       </div>
       <div class="film__button__wrapper">
         <button type="button" class="film__button btn__watch">Add to watched</button>
