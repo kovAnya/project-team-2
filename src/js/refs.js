@@ -75,3 +75,8 @@ export const backdropEl = document.querySelector('.backdrop');
 // До бібліотеки
 export const openWatchedBtn = document.querySelector('.js-watched');
 export const openQueueBtn = document.querySelector('.js-queue');
+
+// Для перемикання сторінок
+
+export const bodyElement = document.querySelector('body[data-page="index"]')
+export const bodyElementLibrary = document.querySelector('body[data-page="library"]')
