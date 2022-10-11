@@ -1,116 +1,143 @@
-import { openWatchedBtn } from './refs';
+// import { onFilmCardClick } from './modal_film';
+import { openWatchedBtn, openQueueBtn } from './refs';
 import { renderMoviesTrending } from './renderMoviesTrending';
+
 const moviesElement = document.querySelector('.movies');
 
-// const openWatchedBtn = document.querySelector('.js-watched');
-
 openWatchedBtn.addEventListener('click', onWatchedBtnClick);
-
-const testResults = [
-  {
-    adult: false,
-    backdrop_path: null,
-    genre_ids: [18],
-    id: 66249,
-    original_language: 'ta',
-    original_title: 'வள்ளி',
-    overview:
-      'Valli returns to her village after studying for 15 years in the city. Her cousin celebrates her arrival to the city. He is in love with Valli from childhood days. But got changed after she went to study in the city. She is no more in love with him.She falls in love with a city guy called Shekar who came to the village with his friends for hunting. Shekar cheats her and escapes from the city. Later shekar was brought back by her cousin. Instead of marrying the city guy she kills him for cheating.',
-    popularity: 1.176,
-    poster_path: '/zKnaVI1qn6Rp5HJcN54eDyUotnW.jpg',
-    release_date: '1993-08-20',
-    title: 'Valli',
-    video: false,
-    vote_average: 4,
-    vote_count: 2,
-  },
-  {
-    adult: false,
-    backdrop_path: '/9WluqTBRcQI2WL53ulGr2OT0ew5.jpg',
-    genre_ids: [28, 18],
-    id: 278056,
-    original_language: 'ml',
-    original_title: 'വല്ല്യേട്ടന്‍',
-    overview:
-      'Madhavankutty is the Valliettan (Big Brother) of the Arackal family. The long lasting rivalry between the Arackal Madhavanunni and Patteri Sivaraman forms the main thread of the story. Madhavanunni along with his four brothers he rules the village. But Sivaraman with the help of Bava develops their plan to trap Madhavanunni.',
-    popularity: 1.4,
-    poster_path: '/aKaJahWUUzZhTcR8tGpmieI8xpG.jpg',
-    release_date: '2000-09-01',
-    title: 'Valliettan',
-    video: false,
-    vote_average: 6.3,
-    vote_count: 9,
-  },
-  {
-    adult: false,
-    backdrop_path: '/igLDuz7qPeIhNS4U27fJTZT52R6.jpg',
-    genre_ids: [35, 18],
-    id: 563705,
-    original_language: 'ml',
-    original_title: 'വള്ളിക്കുടിലിലെ വെള്ളക്കാരന്‍',
-    overview:
-      'Vallikudilile Vellakkaran is a Malayalam movie starring Balu Varghese and Renji Panicker in prominent roles. It is a comedy drama directed by Mr.Duglus Alfred.',
-    popularity: 1.183,
-    poster_path: '/e9YTVyIstFkqHpqFk5bqe9eBPhm.jpg',
-    release_date: '2018-11-09',
-    title: 'Vallikudilile Vellakkaran',
-    video: false,
-    vote_average: 4,
-    vote_count: 1,
-  },
-  {
-    adult: false,
-    backdrop_path: '/uVgTFwmP4Ohr7EgPkRXF8NizvjO.jpg',
-    genre_ids: [18, 35],
-    id: 572958,
-    original_language: 'mr',
-    original_title: 'भाई - व्यक्ती की वल्ली - पूर्वार्ध',
-    overview:
-      "Biopic of Marathi comedian, India's first stand-up comedian P. L. Deshpande.",
-    popularity: 1.268,
-    poster_path: '/jCxwSfvy5QcMkDQNzTieKq14xr0.jpg',
-    release_date: '2019-01-04',
-    title: 'Bhai: Vyakti Ki Valli - Poorvardha',
-    video: false,
-    vote_average: 8,
-    vote_count: 1,
-  },
-  {
-    adult: false,
-    backdrop_path: null,
-    genre_ids: [28, 18],
-    id: 976721,
-    original_language: 'ta',
-    original_title: 'வள்ளி மயில்',
-    overview: '',
-    popularity: 0.6,
-    poster_path: '/zRD2ZsSARV0C1U9tlDEfkemZqdh.jpg',
-    release_date: '',
-    title: 'Valli Mayil',
-    video: false,
-    vote_average: 0,
-    vote_count: 0,
-  },
-  {
-    adult: false,
-    backdrop_path: null,
-    genre_ids: [],
-    id: 1013379,
-    original_language: 'en',
-    original_title: 'Frankie Valli & The Four Seasons: A Life On Stage',
-    overview:
-      'Take a trip down memory lane with the “Jersey Boys” on the 60th anniversary of the release of their first #1 hit, “Sherry.” The group that sold over 175 million records is captured live at the 10,000-seat Mohegan Sun Casino in Connecticut.',
-    popularity: 0.6,
-    poster_path: null,
-    release_date: '',
-    title: 'Frankie Valli & The Four Seasons: A Life On Stage',
-    video: false,
-    vote_average: 0,
-    vote_count: 0,
-  },
-];
+openQueueBtn.addEventListener('click', onQueueBtnClick);
 
 function onWatchedBtnClick() {
-  //   moviesElement.innerHTML = '';
-  renderMoviesTrending(testResults);
+  moviesElement.innerHTML = '';
+  // renderMoviesTrending(FilmsInLocalStorage('Watched'));
+  renderMoviesTrending(testData);
 }
+
+function onQueueBtnClick() {
+  moviesElement.innerHTML = '';
+  // renderMoviesTrending(FilmsInLocalStorage('Queue'));
+  renderMoviesTrending(testDataQueue);
+}
+
+//get films from me library
+function FilmsInLocalStorage(category) {
+  let dataInLocalStorage = localStorage.getItem(category);
+  let parsedDataInLocalStorage = '';
+
+  try {
+    return (parsedDataInLocalStorage = JSON.parse(dataInLocalStorage));
+  } catch (error) {
+    console.warn('Ошибка во время парса данных с локального хранилища');
+  }
+}
+
+const testData = {
+  results: [
+    {
+      adult: false,
+      backdrop_path: '/au236RSArVTOMXM6AXVNBPZEKNb.jpg',
+      genre_ids: [35, 12, 10751, 14],
+      id: 10588,
+      original_language: 'en',
+      original_title: 'The Cat in the Hat',
+      overview:
+        "Conrad and Sally Walden are home alone with their pet fish. It is raining outside, and there is nothing to do. Until The Cat in the Hat walks in the front door. He introduces them to their imagination, and at first it's all fun and games, until things get out of hand, and The Cat must go, go, go, before their parents get back.",
+      popularity: 87.925,
+      poster_path: '/uYYLz67e5xEQMsY858VSSCDsLU6.jpg',
+      release_date: '2003-11-21',
+      title: 'The Cat in the Hat',
+      video: false,
+      vote_average: 5.3,
+      vote_count: 1369,
+    },
+    {
+      adult: false,
+      backdrop_path: '/1PQqvw7wnGeWqvXcBLaGK46n0zk.jpg',
+      genre_ids: [16, 14, 28, 10402],
+      id: 496450,
+      original_language: 'fr',
+      original_title: 'Miraculous Ladybug & Cat Noir: The Movie',
+      overview:
+        'A pair of Parisian high schoolers protect their city as vigilante heroes without comprising their identities to anyone, including each other.',
+      popularity: 57.521,
+      poster_path: '/sIwKj6l49CepyWMUMjOZ6B5VF02.jpg',
+      release_date: '2023-07-05',
+      title: 'Miraculous Ladybug & Cat Noir: The Movie',
+      video: false,
+      vote_average: 0,
+      vote_count: 0,
+    },
+    {
+      adult: false,
+      backdrop_path: '/Agx6yUbh09BAjQlXfQlaXRpdIq0.jpg',
+      genre_ids: [99],
+      id: 1003180,
+      original_language: 'en',
+      original_title: 'Inside the Mind of a Cat',
+      overview:
+        'Cat experts dive into the mind of the feline to reveal the true capabilities of the pouncing pet in this captivating and cuddly documentary.',
+      popularity: 81.221,
+      poster_path: '/lqngTIvF2UdcK9uTZ8nLX3AfbHp.jpg',
+      release_date: '2022-08-18',
+      title: 'Inside the Mind of a Cat',
+      video: false,
+      vote_average: 7.4,
+      vote_count: 101,
+    },
+  ],
+};
+const testDataQueue = {
+  results: [
+    {
+      adult: false,
+      backdrop_path: '/9ueD5NSVOn0dWTL93WciT9JoKN3.jpg',
+      genre_ids: [10751, 18],
+      id: 404378,
+      original_language: 'en',
+      original_title: 'A Street Cat Named Bob',
+      overview:
+        'James Bowen, a homeless busker and recovering drug addict, has his life transformed when he meets a stray ginger cat.',
+      popularity: 12.886,
+      poster_path: '/nBYG0D2FcbL1m926sIj7RN4m0sb.jpg',
+      release_date: '2016-11-04',
+      title: 'A Street Cat Named Bob',
+      video: false,
+      vote_average: 7.9,
+      vote_count: 1149,
+    },
+    {
+      adult: false,
+      backdrop_path: '/mSdpQhD0AzwKiwGiWhMqn04XbWB.jpg',
+      genre_ids: [27],
+      id: 26503,
+      original_language: 'it',
+      original_title: 'Black Cat: Gatto nero',
+      overview:
+        'When a young couple goes missing in a sleepy English village, Scotland Yard Inspector Gorley is brought in to assist on the case.  But what starts off as routine investigation turns into a murder inquiry when the couple are found dead in mysterious circumstances.',
+      popularity: 5.382,
+      poster_path: '/69bYJOdhjXXVycXd8mZdlpyYgyr.jpg',
+      release_date: '1981-04-04',
+      title: 'The Black Cat',
+      video: false,
+      vote_average: 6.1,
+      vote_count: 99,
+    },
+    {
+      adult: false,
+      backdrop_path: '/muY5sFFZnI7A3KGG7Iqd3xyCY7m.jpg',
+      genre_ids: [28, 9648, 53],
+      id: 48170,
+      original_language: 'en',
+      original_title: 'Black Cat Run',
+      overview:
+        "A girl is in love with a gas station attendant and sees him against her father's wishes. The father is the sheriff and shortly after a confrontation with the boy friend, he is killed by escaped convicts and the daughter is kidnapped. Everyone, including the deputy, is convinced that the boy friend committed the murder and ran away with the girl. This sets up a chase of the convicts by the boy friend and of the boy friend by the police.",
+      popularity: 5.816,
+      poster_path: '/mwc5GRwZCgbH3dEa4LDMMOnnUVa.jpg',
+      release_date: '1998-09-18',
+      title: 'Black Cat Run',
+      video: false,
+      vote_average: 5.4,
+      vote_count: 11,
+    },
+  ],
+};

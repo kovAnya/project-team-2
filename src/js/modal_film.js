@@ -17,7 +17,8 @@ const modal = document.querySelector('.modal__container');
 
 let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
 let fileSize = 'w400';
-let stubPicture = 'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp'
+let stubPicture =
+  'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp';
 
 ////////////////////////////////Получаем данные с Локального Хранилища
 
@@ -109,7 +110,11 @@ function makeFilmModalMarkup(
 ) {
   return `
   <div class="film__image">
-  ${poster_path !== null ? `<img class="image" src="${BASE_URL_IMAGE}/${fileSize}/${poster_path}" alt=${title}/>` : ''}
+  ${
+    poster_path !== null
+      ? `<img class="image" src="${BASE_URL_IMAGE}/${fileSize}/${poster_path}" alt=${title}/>`
+      : ''
+  }
     </div>
     <div class="film__information">
       <div>
