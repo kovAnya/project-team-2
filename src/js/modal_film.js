@@ -17,11 +17,12 @@ const modal = document.querySelector('.modal__container');
 
 let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
 let fileSize = 'w400';
-let stubPicture = 'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp'
+let stubPicture =
+  'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp';
 
 ////////////////////////////////Получаем данные с Локального Хранилища
 
-function dataInLocalStorage() {
+export function dataInLocalStorage() {
   let dataInLocalStorage = localStorage.getItem('dataInApi');
   let parsedDataInLocalStorage = '';
 
@@ -36,7 +37,7 @@ function dataInLocalStorage() {
 filmsListRef.addEventListener('click', onFilmCardClick);
 closeBtnRef.addEventListener('click', onCloseBtnClick);
 
-function onFilmCardClick(e) {
+export function onFilmCardClick(e) {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
@@ -98,7 +99,7 @@ function onFilmCardClick(e) {
   });
 }
 
-function makeFilmModalMarkup(
+export function makeFilmModalMarkup(
   poster_path,
   title,
   vote_average,
@@ -109,7 +110,11 @@ function makeFilmModalMarkup(
 ) {
   return `
   <div class="film__image">
-  ${poster_path !== null ? `<img class="image" src="${BASE_URL_IMAGE}/${fileSize}/${poster_path}" alt=${title}/>` : ''}
+  ${
+    poster_path !== null
+      ? `<img class="image" src="${BASE_URL_IMAGE}/${fileSize}/${poster_path}" alt=${title}/>`
+      : ''
+  }
     </div>
     <div class="film__information">
       <div>
@@ -157,7 +162,7 @@ function makeFilmModalMarkup(
 }
 
 //Функція закриття по кнопці
-function onCloseBtnClick() {
+export function onCloseBtnClick() {
   const filmImg = document.querySelector('.film__image');
   const filmInfo = document.querySelector('.film__information');
   filmImg.remove();
@@ -170,14 +175,14 @@ function onCloseBtnClick() {
 }
 
 //Функція закриття по ESC
-function onEscBtnPress(e) {
+export function onEscBtnPress(e) {
   if (e.code === 'Escape') {
     onCloseBtnClick();
   }
 }
 
 //Функція закриття модалки поза межами модалки
-function onBackdropClick(e) {
+export function onBackdropClick(e) {
   if (e.target === backdrop) {
     onCloseBtnClick();
   }
