@@ -9,6 +9,7 @@ import {
   processingPoster,
 } from './renderMoviesTrending';
 import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
+import { addLocal } from './add_local_storage';
 
 const backdrop = document.querySelector('.modal__backdrop');
 const filmsListRef = document.querySelector('.movies');
@@ -76,15 +77,8 @@ function onFilmCardClick(e) {
       overview
     )
   );
-  const obj = {
-    poster_path,
-    title,
-    vote_average,
-    vote_count,
-    popularity,
-    genre_ids,
-    overview,
-  };
+
+  const obj = addLocal(changeFilm);
   const btnWatch = document.querySelector('.btn__watch');
   const btnQueue = document.querySelector('.btn__queue');
   btnWatch.addEventListener('click', () => {

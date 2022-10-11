@@ -29,5 +29,29 @@ export function btnColor(add, btnNo) {
   btnNo.setAttribute('disabled', 'true');
   add.setAttribute('disabled', 'true');
 }
+export function objInfo(obj) {
+  const genres_ids = obj.genres_ids;
+  console.log(genres_ids);
+}
 
 export { onWatchedBtnClick, onQueueBtnClick };
+export function addLocal(obj) {
+  const id = obj.id;
+  const posterPathOriginal = obj.poster_path;
+  const name = obj.name;
+  const genreIdsId = obj.genre_ids;
+  const releaseDate = obj.release_date;
+  const firstAirDate = obj.first_air_date;
+  const title = obj.title;
+  const voteAverage = obj.vote_average;
+  return {
+    id,
+    posterPathOriginal,
+    name,
+    genreIdsId,
+    releaseDate,
+    firstAirDate,
+    title,
+    voteAverage,
+  };
+}
