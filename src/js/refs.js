@@ -78,5 +78,4 @@ export const openQueueBtn = document.querySelector('.js-queue');
 
 // Для перемикання сторінок
 
-export const bodyElement = document.querySelector('body[data-page="index"]')
-export const bodyElementLibrary = document.querySelector('body[data-page="library"]')
+export const bodyElement = document.querySelector('body');
