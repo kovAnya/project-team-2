@@ -96,7 +96,7 @@ export async function renderMoviesTrending(dataFromServer) {
           release_date,
           first_air_date,
           id,
-          voteAverage,
+          vote_average,
         } ////Перебираем каждый фильм и берем данные
       ) => {
         let poster = ''; ////Картинка фильма
@@ -115,7 +115,7 @@ export async function renderMoviesTrending(dataFromServer) {
           genres,
           releasedYear,
           id,
-          voteAverage
+          vote_average
         );
 
         moviesElement.insertAdjacentHTML('beforeend', cardFilm); /// Добавляем сформированную карточку в HTML код

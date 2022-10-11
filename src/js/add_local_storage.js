@@ -43,7 +43,10 @@ export function addLocal(obj) {
   const release_date = obj.release_date;
   const first_air_date = obj.first_air_date;
   const title = obj.title;
-  const voteAverage = obj.vote_average;
+  const vote_average = obj.vote_average;
+  const popularity = obj.popularity;
+  const vote_count = obj.vote_count;
+  const overview = obj.overview;
   return {
     poster_path,
     title,
@@ -52,6 +55,9 @@ export function addLocal(obj) {
     release_date,
     first_air_date,
     id,
-    voteAverage,
+    vote_average,
+    popularity,
+    vote_count,
+    overview,
   };
 }
