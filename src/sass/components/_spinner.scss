@@ -1,15 +1,20 @@
 // Рисуем фон, позиционируем спиннер
 .loader {
     position: fixed;
-    top: 0;
+    top: 230px;
     left: 0;
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(47, 48, 58, 0.4);
+    background-color: #f7f9fb;
     transition: opacity 0.75s, visibility 0.75s;
+
+    @media screen and (min-width: 768px) {
+    top: 216px;
+    left: 0;
+    }
 }
         
            
