@@ -109,7 +109,7 @@ function makeFilmModalMarkup(
 ) {
   return `
   <div class="film__image">
-  <img class="image" src="${poster_path}" alt=${title}/>
+  ${poster_path !== null ? `<img class="image" src="${BASE_URL_IMAGE}/${fileSize}/${poster_path}" alt=${title}/>` : ''}
     </div>
     <div class="film__information">
       <div>
