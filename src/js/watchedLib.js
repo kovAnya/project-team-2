@@ -2,7 +2,7 @@ import { openWatchedBtn } from './refs';
 import { renderMoviesTrending } from './renderMoviesTrending';
 const moviesElement = document.querySelector('.movies');
 
-const openWatchedBtn = document.querySelector('.js-watched');
+// const openWatchedBtn = document.querySelector('.js-watched');
 
 openWatchedBtn.addEventListener('click', onWatchedBtnClick);
 

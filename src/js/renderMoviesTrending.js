@@ -7,10 +7,12 @@ import { getMovieGenres } from './genres';
 const moviesElement = document.querySelector('.movies');
 ///////////////////////////////////////////////////////
 
-////////////////Путь и размер запроса картинок
+////////////////Путь и размер запроса картинок + заглушка картинки
 let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
 let fileSize = 'w400';
+
 let stubPicture = 'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp'
+
 ///////////////////////////////////////////////
 
 ///////////////////////////////////////Функция которая берет только год из данных с сервера
@@ -92,7 +94,8 @@ export async function renderMoviesTrending(dataFromServer) {
       (
         { poster_path, title, name, genre_ids, release_date, first_air_date, id } ////Перебираем каждый фильм и берем данные
       ) => {
-        let poster = ``; ////Картинка фильма
+
+        let poster = ''; ////Картинка фильма
         let genres = []; /// Жанры фильма
         let releasedYear = ''; /// Год релиза
         let cardFilm = ''; /// Обьявление переменной для карточки фильма
