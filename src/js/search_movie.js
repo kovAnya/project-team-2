@@ -31,7 +31,7 @@ async function fetchFilms(page) {
       `https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&language=en-US&query=${inputValue}&page=${page}&include_adult=false`
     );
     console.log(fetchResult.data);
-    return fetchResult.data;
+    return fetchResult.data.results;
   } catch (error) {
     console.error(error);
   }
