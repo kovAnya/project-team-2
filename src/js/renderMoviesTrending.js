@@ -84,13 +84,12 @@ export async function saveInLocalStorage(dataFromServer) {
 ///////////////Функция рендеринга 1 карточки фильма
 export async function renderMoviesTrending(dataFromServer) {
   try {
-    let data = await dataFromServer;
+    let data = await dataFromServer; ////Массив с 20 фильмами
 
     saveInLocalStorage(dataFromServer)
 
-    let arrsFilm = data.results; ////Обьект с 20 фильмами
 
-    arrsFilm.map(
+    data.map(
       (
         { poster_path, title, name, genre_ids, release_date, first_air_date, id } ////Перебираем каждый фильм и берем данные
       ) => {

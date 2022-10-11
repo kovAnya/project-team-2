@@ -52,8 +52,9 @@ function onFilmCardClick(e) {
 
   /////Данные с Локального хранилища
   let dataLocalStorage = dataInLocalStorage();
-  let arrsFilm = dataLocalStorage.results; ////Обьект с 20 фильмами
-  let changeFilm = arrsFilm.find(film => film.id === idImageNumber);
+  
+console.log(dataLocalStorage)
+  let changeFilm = dataLocalStorage.find(film => film.id === idImageNumber);
 
   ///////////////Переменные для отрисовки Модалки
   let poster_path = processingPoster(changeFilm.poster_path);
@@ -112,7 +113,7 @@ function makeFilmModalMarkup(
   <div class="film__image">
   ${
     poster_path !== null
-      ? `<img class="image" src="${BASE_URL_IMAGE}/${fileSize}/${poster_path}" alt=${title}/>`
+      ? `<img class="image" src="${poster_path}" alt=${title}/>`
       : ''
   }
     </div>
