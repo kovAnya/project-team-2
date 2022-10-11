@@ -6,11 +6,26 @@ import {
 } from './js/renderMoviesTrending';
 import { fetchMoviesTrending } from './js/fetchMoviesTrending';
 import './js/themeSwitcher';
-import { page } from './js/refs';
+import { page, bodyElement, bodyElementLibrary} from './js/refs';
 import './js/spinner';
 import './js/modal-log-in';
 import './js/log-in';
 import './js/footer-modal';
 import './js/genres';
+import { FilmsInLocalStorage } from './js/watchedLib'
 
-renderMoviesTrending(fetchMoviesTrending(page));
+
+
+function renderPage(bodyElement, bodyElementLibrary) {
+  if(bodyElement.dataset.page === 'index'){
+    return renderMoviesTrending(fetchMoviesTrending(page));
+  } else if(bodyElementLibrary.dataset.page === 'library') {
+    return renderMoviesTrending(FilmsInLocalStorage('Watched'))
+  }
+} 
+
+
+console.log(bodyElement)
+console.log(bodyElementLibrary)
+
+renderPage(bodyElement, bodyElementLibrary)

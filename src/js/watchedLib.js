@@ -20,7 +20,7 @@ function onQueueBtnClick() {
 }
 
 //get films from me library
-function FilmsInLocalStorage(category) {
+export function FilmsInLocalStorage(category) {
   let dataInLocalStorage = localStorage.getItem(category);
   let parsedDataInLocalStorage = '';
 
