@@ -9,14 +9,14 @@ openQueueBtn.addEventListener('click', onQueueBtnClick);
 
 function onWatchedBtnClick() {
   moviesElement.innerHTML = '';
-  // renderMoviesTrending(FilmsInLocalStorage('Watched'));
-  renderMoviesTrending(testData);
+  renderMoviesTrending(FilmsInLocalStorage('Watched'));
+  // renderMoviesTrending(testData);
 }
 
 function onQueueBtnClick() {
   moviesElement.innerHTML = '';
-  // renderMoviesTrending(FilmsInLocalStorage('Queue'));
-  renderMoviesTrending(testDataQueue);
+  renderMoviesTrending(FilmsInLocalStorage('Queue'));
+  // renderMoviesTrending(testDataQueue);
 }
 
 //get films from me library
