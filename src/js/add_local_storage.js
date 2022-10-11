@@ -37,21 +37,21 @@ export function objInfo(obj) {
 export { onWatchedBtnClick, onQueueBtnClick };
 export function addLocal(obj) {
   const id = obj.id;
-  const posterPathOriginal = obj.poster_path;
+  const poster_path = obj.poster_path;
   const name = obj.name;
-  const genreIdsId = obj.genre_ids;
-  const releaseDate = obj.release_date;
-  const firstAirDate = obj.first_air_date;
+  const genre_ids = obj.genre_ids;
+  const release_date = obj.release_date;
+  const first_air_date = obj.first_air_date;
   const title = obj.title;
   const voteAverage = obj.vote_average;
   return {
-    id,
-    posterPathOriginal,
-    name,
-    genreIdsId,
-    releaseDate,
-    firstAirDate,
+    poster_path,
     title,
+    name,
+    genre_ids,
+    release_date,
+    first_air_date,
+    id,
     voteAverage,
   };
 }
