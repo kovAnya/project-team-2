@@ -1,28 +1,32 @@
-
-import { fetchMoviesTrending } from "./fetchMoviesTrending";
-import {getMovieGenres} from './genres';
-import {renderMoviesTrending, processingReleasedYear, processingGenre, processingNameFilm} from './renderMoviesTrending';
+import { fetchMoviesTrending } from './fetchMoviesTrending';
+import { getMovieGenres } from './genres';
+import { btnColor } from './add_local_storage';
+import {
+  renderMoviesTrending,
+  processingReleasedYear,
+  processingGenre,
+  processingNameFilm,
+} from './renderMoviesTrending';
+import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
 
 const backdrop = document.querySelector('.modal__backdrop');
-const filmsListRef = document.querySelector('.movies'); 
+const filmsListRef = document.querySelector('.movies');
 const closeBtnRef = document.querySelector('.closeModal');
 const modal = document.querySelector('.modal__container');
 
 let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
 let fileSize = 'w400';
 
-
-  ////////////////////////////////Получаем данные с Локального Хранилища
+////////////////////////////////Получаем данные с Локального Хранилища
 
 function dataInLocalStorage() {
-  let dataInLocalStorage = localStorage.getItem("dataInApi");
+  let dataInLocalStorage = localStorage.getItem('dataInApi');
   let parsedDataInLocalStorage = '';
 
-  try{
-  return parsedDataInLocalStorage = JSON.parse(dataInLocalStorage)
-  
-  } catch(error) {
-    console.warn("Ошибка во время парса данных с локального хранилища")
+  try {
+    return (parsedDataInLocalStorage = JSON.parse(dataInLocalStorage));
+  } catch (error) {
+    console.warn('Ошибка во время парса данных с локального хранилища');
   }
 }
 //////////////////////////////////////////////////////////
@@ -31,10 +35,9 @@ filmsListRef.addEventListener('click', onFilmCardClick);
 closeBtnRef.addEventListener('click', onCloseBtnClick);
 
 function onFilmCardClick(e) {
-  if (e.target.nodeName !== "IMG") {
+  if (e.target.nodeName !== 'IMG') {
     return;
   }
-
 
   backdrop.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
@@ -43,23 +46,54 @@ function onFilmCardClick(e) {
   /////////Проверка id фильма по которому кликнули
   let idImage = e.target.dataset.id;
   let idImageNumber = Number(idImage);
- 
+
   /////Данные с Локального хранилища
-  let dataLocalStorage = dataInLocalStorage()
-  let arrsFilm = dataLocalStorage.results ////Обьект с 20 фильмами
-  let changeFilm = arrsFilm.find (film => film.id === idImageNumber)
-  
+  let dataLocalStorage = dataInLocalStorage();
+  let arrsFilm = dataLocalStorage.results; ////Обьект с 20 фильмами
+  let changeFilm = arrsFilm.find(film => film.id === idImageNumber);
+
   ///////////////Переменные для отрисовки Модалки
   let poster_path = changeFilm.poster_path;
   let title = processingNameFilm(changeFilm.title, changeFilm.name);
-  let vote_average = changeFilm.vote_average
-  let vote_count = changeFilm.vote_count
-  let popularity = changeFilm.popularity
-  let genre_ids = processingGenre(changeFilm.genre_ids)
-  let overview = changeFilm.overview
+  let vote_average = changeFilm.vote_average;
+  let vote_count = changeFilm.vote_count;
+  let popularity = changeFilm.popularity;
+  let genre_ids = processingGenre(changeFilm.genre_ids);
+  let overview = changeFilm.overview;
 
-  modal.insertAdjacentHTML('afterbegin', makeFilmModalMarkup(poster_path, title, vote_average, vote_count, popularity, genre_ids, overview));
-  
+  modal.insertAdjacentHTML(
+    'afterbegin',
+    makeFilmModalMarkup(
+      poster_path,
+      title,
+      vote_average,
+      vote_count,
+      popularity,
+      genre_ids,
+      overview
+    )
+  );
+  const obj = {
+    poster_path,
+    title,
+    vote_average,
+    vote_count,
+    popularity,
+    genre_ids,
+    overview,
+  };
+  const btnWatch = document.querySelector('.btn__watch');
+  const btnQueue = document.querySelector('.btn__queue');
+  btnWatch.addEventListener('click', () => {
+    btnQueue.textContent = 'You add film to watched';
+    btnColor(btnWatch, btnQueue);
+    onWatchedBtnClick(obj);
+  });
+  btnQueue.addEventListener('click', () => {
+    btnWatch.textContent = 'You add film to queue ';
+    btnColor(btnQueue, btnWatch);
+    onQueueBtnClick(obj);
+  });
 }
 
 function makeFilmModalMarkup(
@@ -69,7 +103,7 @@ function makeFilmModalMarkup(
   vote_count,
   popularity,
   genre_ids,
-  overview,
+  overview
 ) {
   return `
   <div class="film__image">
@@ -97,13 +131,21 @@ function makeFilmModalMarkup(
           </li>
           <li class="film__item">
             <p class="film__details">Genre</p>
-            ${genre_ids.length !== 0 ? `<p class="film__info">${genre_ids}</p>` : `<p class="film__info">No information</p>`}
+            ${
+              genre_ids.length !== 0
+                ? `<p class="film__info">${genre_ids}</p>`
+                : `<p class="film__info">No information</p>`
+            }
           </li>
         </ul>
       </div>
       <div>
         <h3 class="film__about__title">About</h3>
-        ${overview ? `<p class="film__about__text">${overview}</p>` : `<p class="film__about__text">No information</p>`}
+        ${
+          overview
+            ? `<p class="film__about__text">${overview}</p>`
+            : `<p class="film__about__text">No information</p>`
+        }
       </div>
       <div class="film__button__wrapper">
         <button type="button" class="film__button btn__watch">Add to watched</button>
@@ -138,5 +180,3 @@ function onBackdropClick(e) {
     onCloseBtnClick();
   }
 }
-
-
