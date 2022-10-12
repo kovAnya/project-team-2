@@ -83,7 +83,11 @@ export async function saveInLocalStorage(dataFromServer) {
 export async function renderMoviesTrending(dataFromServer) {
   try {
     let data = await dataFromServer; ////Массив с 20 фильмами
-
+    if (!data) {
+      moviesElement.parentNode.innerHTML =
+        "<p class = 'info-message'>You haven't added any movies yet. Please use search to find relevant movies</p>";
+      return;
+    }
     saveInLocalStorage(dataFromServer);
 
     data.map(
