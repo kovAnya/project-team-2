@@ -6,8 +6,10 @@ import {
   processingReleasedYear,
   processingGenre,
   processingNameFilm,
+  processingPoster,
 } from './renderMoviesTrending';
 import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
+import { addLocal } from './add_local_storage';
 
 const backdrop = document.querySelector('.modal__backdrop');
 const filmsListRef = document.querySelector('.movies');
@@ -16,6 +18,8 @@ const modal = document.querySelector('.modal__container');
 
 let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
 let fileSize = 'w400';
+let stubPicture =
+  'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp';
 
 ////////////////////////////////Получаем данные с Локального Хранилища
 
@@ -49,11 +53,12 @@ function onFilmCardClick(e) {
 
   /////Данные с Локального хранилища
   let dataLocalStorage = dataInLocalStorage();
-  let arrsFilm = dataLocalStorage.results; ////Обьект с 20 фильмами
-  let changeFilm = arrsFilm.find(film => film.id === idImageNumber);
+  
+console.log(dataLocalStorage)
+  let changeFilm = dataLocalStorage.find(film => film.id === idImageNumber);
 
   ///////////////Переменные для отрисовки Модалки
-  let poster_path = changeFilm.poster_path;
+  let poster_path = processingPoster(changeFilm.poster_path);
   let title = processingNameFilm(changeFilm.title, changeFilm.name);
   let vote_average = changeFilm.vote_average;
   let vote_count = changeFilm.vote_count;
@@ -73,15 +78,8 @@ function onFilmCardClick(e) {
       overview
     )
   );
-  const obj = {
-    poster_path,
-    title,
-    vote_average,
-    vote_count,
-    popularity,
-    genre_ids,
-    overview,
-  };
+
+  const obj = addLocal(changeFilm);
   const btnWatch = document.querySelector('.btn__watch');
   const btnQueue = document.querySelector('.btn__queue');
   btnWatch.addEventListener('click', () => {
@@ -107,7 +105,11 @@ function makeFilmModalMarkup(
 ) {
   return `
   <div class="film__image">
-  <img class="image" src="${BASE_URL_IMAGE}/${fileSize}/${poster_path}" alt=${title}/>
+  ${
+    poster_path !== null
+      ? `<img class="image" src="${poster_path}" alt=${title}/>`
+      : ''
+  }
     </div>
     <div class="film__information">
       <div>
