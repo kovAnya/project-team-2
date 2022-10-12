@@ -9,13 +9,33 @@ let arrQueue = [];
 // btnWatch.addEventListener('click', onWatchedBtnClick);
 // btnQueue.addEventListener('click', onQueueBtnClick);
 function onWatchedBtnClick(obj) {
+  const checkWatch = localStorage.getItem(WATCH_KEY);
+  if (checkWatch) {
+    arrWatch = JSON.parse(checkWatch);
+  }
+
+  const filmWatch = arrWatch.find(array => array.id === obj.id);
+  if (filmWatch) {
+    return;
+  }
   arrWatch.push(obj);
   localStorageUs.save(WATCH_KEY, arrWatch);
+  return arrWatch;
 }
 
 function onQueueBtnClick(obj) {
+  const checkQueue = localStorage.getItem(QUEUE_KEY);
+  if (checkQueue) {
+    arrQueue = JSON.parse(checkQueue);
+  }
+
+  const filmQueue = arrQueue.find(array => array.id === obj.id);
+  if (filmQueue) {
+    return;
+  }
   arrQueue.push(obj);
   localStorageUs.save(QUEUE_KEY, arrQueue);
+  return arrQueue;
 }
 export function btnColor(add, btnNo) {
   add.style.backgroundColor = '#ff6b08';
