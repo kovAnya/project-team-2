@@ -9,11 +9,15 @@ window.addEventListener('load', onWatchedBtnClick);
 
 function onWatchedBtnClick() {
   moviesElement.innerHTML = '';
+  openWatchedBtn.classList.add('button--accent');
+  openQueueBtn.classList.remove('button--accent');
   renderMoviesTrending(FilmsInLocalStorage('Watched'));
 }
 
 function onQueueBtnClick() {
   moviesElement.innerHTML = '';
+  openQueueBtn.classList.add('button--accent');
+  openWatchedBtn.classList.remove('button--accent');
   renderMoviesTrending(FilmsInLocalStorage('Queue'));
 }
 
