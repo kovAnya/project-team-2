@@ -4,6 +4,7 @@ import { getMovieGenres } from './genres';
 
 ///////////////Елемент одной карточки в HTML документе
 const moviesElement = document.querySelector('.movies');
+const messageElement = document.querySelector('.info-message');
 ///////////////////////////////////////////////////////
 
 ////////////////Путь и размер запроса картинок + заглушка картинки
@@ -84,10 +85,10 @@ export async function renderMoviesTrending(dataFromServer) {
   try {
     let data = await dataFromServer; ////Массив с 20 фильмами
     if (!data) {
-      moviesElement.parentNode.innerHTML =
+      messageElement.innerHTML =
         "<p class = 'info-message'>You haven't added any movies yet. Please use search to find relevant movies</p>";
       return;
-    }
+    } else messageElement.innerHTML = '';
     saveInLocalStorage(dataFromServer);
 
     data.map(
