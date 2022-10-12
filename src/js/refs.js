@@ -3,6 +3,7 @@ export let page = 1;
 
 // До авторизації
 const refs = {
+  toTopBtn: document.querySelector('.btn-to-top'),
   modalBackdrop: document.querySelector('.modal-backdrop'),
   headerLogIn: document.querySelector('.header-logIn'),
   headerLogOut: document.querySelector('.header-logOut'),
@@ -32,6 +33,7 @@ const refs = {
   loader: document.querySelector('.loader'),
 };
 export const {
+  toTopBtn,
   modalBackdrop,
   headerLogIn,
   headerLogOut,

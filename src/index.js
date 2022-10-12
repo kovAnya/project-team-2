@@ -10,6 +10,7 @@ import { page, bodyElement } from './js/refs';
 import './js/spinner';
 import './js/modal-log-in';
 import './js/log-in';
+import './js/scroll';
 import './js/footer-modal';
 import './js/genres';
 
