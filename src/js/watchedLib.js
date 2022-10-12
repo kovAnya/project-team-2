@@ -5,6 +5,7 @@ const moviesElement = document.querySelector('.movies');
 
 openWatchedBtn.addEventListener('click', onWatchedBtnClick);
 openQueueBtn.addEventListener('click', onQueueBtnClick);
+window.addEventListener('load', onWatchedBtnClick);
 
 function onWatchedBtnClick() {
   moviesElement.innerHTML = '';
