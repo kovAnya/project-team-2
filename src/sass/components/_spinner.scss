@@ -1,6 +1,11 @@
+
+
+
+
+// Рисуем фон, позиционируем спиннер
 .loader {
     position: fixed;
-    top: 0;
+    top: 230px;
     left: 0;
     width: 100vw;
     height: 100vh;
@@ -9,13 +14,22 @@
     align-items: center;
     background-color: #f7f9fb;
     transition: opacity 0.75s, visibility 0.75s;
-}
 
+    @media screen and (min-width: 768px) {
+    top: 216px;
+    left: 0;
+    }
+}
+        
+
+           
+// Класс который убирает спиннер после загрузки
 .loader-hidden {
     opacity: 0;
     visibility: hidden;
 }
 
+// Рисуем спиннер
 .loader::after {
     content: "";
     width: 75px;
@@ -26,6 +40,7 @@
     animation: loading 0.75s ease infinite;
 }
 
+// Вращаем спиннер
 @keyframes loading {
     from {
         transition: rotate(0turn);

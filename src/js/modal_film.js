@@ -1,138 +1,160 @@
-// import { APiKey} from './refs';
+import { fetchMoviesTrending } from './fetchMoviesTrending';
 import { getMovieGenres } from './genres';
+import { btnColor } from './add_local_storage';
+import {
+  renderMoviesTrending,
+  processingReleasedYear,
+  processingGenre,
+  processingNameFilm,
+  processingPoster,
+  processingVoteAverage,
+} from './renderMoviesTrending';
+import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
+import { addLocal } from './add_local_storage';
 
 const backdrop = document.querySelector('.modal__backdrop');
-// ("Знаходить клас ul(картки) з фільмами")
-const filmsListRef = document.querySelector('.movies'); 
-// const btnMovie = document.querySelector('.btn-movie');
+const filmsListRef = document.querySelector('.movies');
 const closeBtnRef = document.querySelector('.closeModal');
 const modal = document.querySelector('.modal__container');
 
+let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
+let fileSize = 'w400';
+let stubPicture =
+  'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp';
+
+////////////////////////////////Получаем данные с Локального Хранилища
+
+function dataInLocalStorage() {
+  let dataInLocalStorage = localStorage.getItem('dataInApi');
+  let parsedDataInLocalStorage = '';
+
+  try {
+    return (parsedDataInLocalStorage = JSON.parse(dataInLocalStorage));
+  } catch (error) {
+    console.warn('Ошибка во время парса данных с локального хранилища');
+  }
+}
+//////////////////////////////////////////////////////////
 
 filmsListRef.addEventListener('click', onFilmCardClick);
-// btnMovie.addEventListener('click', onFilmCardClick);
 closeBtnRef.addEventListener('click', onCloseBtnClick);
 
 function onFilmCardClick(e) {
+  if (e.target.nodeName !== 'IMG') {
+    return;
+  }
+
   backdrop.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
   document.addEventListener('keydown', onEscBtnPress);
   document.addEventListener('click', onBackdropClick);
-  modal.insertAdjacentHTML('afterbegin', makeFilmModalMarkup());
-  // try {
-  //   if (e.target.nodeName === 'UL') return;
-  //   backdrop.classList.remove('is-hidden');
-  //   document.body.style.overflow = 'hidden';
+  /////////Проверка id фильма по которому кликнули
+  let idImage = e.target.dataset.id;
+  let idImageNumber = Number(idImage);
 
-  //   document.addEventListener('keydown', onEscBtnPress);
-  //   document.addEventListener('click', onBackdropClick);
+  /////Данные с Локального хранилища
+  let dataLocalStorage = dataInLocalStorage();
+  
+console.log(dataLocalStorage)
+  let changeFilm = dataLocalStorage.find(film => film.id === idImageNumber);
 
-  // modal.insertAdjacentHTML('afterbegin', makeFilmModalMarkup({g, h,j,k,s,d,f,r,t,y}));
-  //   }
-  // catch (error) {
-  //   console.log(error);
-  // }
- 
+  ///////////////Переменные для отрисовки Модалки
+  let poster_path = processingPoster(changeFilm.poster_path);
+  let title = processingNameFilm(changeFilm.title, changeFilm.name);
+  let vote_average = processingVoteAverage(changeFilm.vote_average);
+  let vote_count = changeFilm.vote_count;
+  let popularity = changeFilm.popularity;
+  let genre_ids = processingGenre(changeFilm.genre_ids);
+  let overview = changeFilm.overview;
+
+  modal.insertAdjacentHTML(
+    'afterbegin',
+    makeFilmModalMarkup(
+      poster_path,
+      title,
+      vote_average,
+      vote_count,
+      popularity,
+      genre_ids,
+      overview
+    )
+  );
+
+  const obj = addLocal(changeFilm);
+  const btnWatch = document.querySelector('.btn__watch');
+  const btnQueue = document.querySelector('.btn__queue');
+  btnWatch.addEventListener('click', () => {
+    btnQueue.textContent = 'You add film to watched';
+    btnColor(btnWatch, btnQueue);
+    onWatchedBtnClick(obj);
+  });
+  btnQueue.addEventListener('click', () => {
+    btnWatch.textContent = 'You add film to queue ';
+    btnColor(btnQueue, btnWatch);
+    onQueueBtnClick(obj);
+  });
 }
 
-// function makeFilmModalMarkup({
-//   poster_path,
-//   original_title,
-//   title,
-//   name,
-//   vote_average,
-//   vote_count,
-//   genres,
-//   overview,
-//   popularity,
-//   id,
-// }) {
-//   const filmGenres = genres.map(({ name }) => name).join(', ');
-//   return `
-//   <div class="film__image">
-//   <img class="image" src="https://image.tmdb.org/t/p/original${poster_path}" alt=${
-//     title || original_title || name
-//   } />
-//     </div>
-//     <div class="film__information">
-//       <div>
-//         <h2 class="film__title">${title || original_title || name}</h2>
-//         <ul>
-//           <li class="film__item">
-//             <p class="film__details">Vote / Votes</p>
-//             <p class="film__info--uper">
-//               <span class="film__rating--orange">${vote_average}</span>
-//               <span class="film__rating--divider"> / </span>
-//               <span class="vote-count">${vote_count}</span>
-//             </p>
-//           </li>
-//           <li class="film__item">
-//             <p class="film__details">Popularity</p>
-//             <p class="film__info--uper">${popularity}</p>
-//           </li>
-//           <li class="film__item">
-//             <p class="film__details">Original title</p>
-//             <p>${title || original_title || name}</p>
-//           </li>
-//           <li class="film__item">
-//             <p class="film__details">Genre</p>
-//             <p class="film__info">${filmGenres}</p>
-//           </li>
-//         </ul>
-//       </div>
-//       <div>
-//         <h3 class="film__about__title">About</h3>
-//         <p class="film__about__text">${overview}</p>
-//       </div>
-//       <div class="film__button__wrapper">
-//         <button type="button" class="film__button btn__watch" data-id=${id}>Add to watched</button>
-//         <button type="button" class="film__button btn__queue" data-id=${id}>Add to queue</button>
-//       </div>
-//       </div>`
-//   ;
-// }
-
-function makeFilmModalMarkup() {
+function makeFilmModalMarkup(
+  poster_path,
+  title,
+  vote_average,
+  vote_count,
+  popularity,
+  genre_ids,
+  overview
+) {
   return `
   <div class="film__image">
-  <img class="image" src="https://image.tmdb.org/t/p/original" alt= />
+  ${
+    poster_path !== null
+      ? `<img class="image" src="${poster_path}" alt=${title}/>`
+      : ''
+  }
     </div>
     <div class="film__information">
       <div>
-        <h2 class="film__title"></h2>
+        <h2 class="film__title">${title}</h2>
         <ul>
           <li class="film__item">
             <p class="film__details">Vote / Votes</p>
             <p class="film__info--uper">
-              <span class="film__rating--orange"></span>
+              <span class="film__rating--orange">${vote_average}</span>
               <span class="film__rating--divider"> / </span>
-              <span class="vote-count"></span>
+              <span class="vote-count">${vote_count}</span>
             </p>
           </li>
           <li class="film__item">
             <p class="film__details">Popularity</p>
-            <p class="film__info--uper"></p>
+            <p class="film__info--uper">${popularity}</p>
           </li>
           <li class="film__item">
             <p class="film__details">Original title</p>
-            <p></p>
+            <p>${title}</p>
           </li>
           <li class="film__item">
             <p class="film__details">Genre</p>
-            <p class="film__info"></p>
+            ${
+              genre_ids.length !== 0
+                ? `<p class="film__info">${genre_ids}</p>`
+                : `<p class="film__info">No information</p>`
+            }
           </li>
         </ul>
       </div>
       <div>
         <h3 class="film__about__title">About</h3>
-        <p class="film__about__text"></p>
+        ${
+          overview
+            ? `<p class="film__about__text">${overview}</p>`
+            : `<p class="film__about__text">No information</p>`
+        }
       </div>
       <div class="film__button__wrapper">
-        <button type="button" class="film__button btn__watch" data-id=>Add to watched</button>
-        <button type="button" class="film__button btn__queue" data-id=>Add to queue</button>
+        <button type="button" class="film__button btn__watch">Add to watched</button>
+        <button type="button" class="film__button btn__queue">Add to queue</button>
       </div>
-      </div>`
-       ;
+      </div>`;
 }
 
 //Функція закриття по кнопці
@@ -161,4 +183,3 @@ function onBackdropClick(e) {
     onCloseBtnClick();
   }
 }
-

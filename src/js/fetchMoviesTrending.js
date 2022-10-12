@@ -11,7 +11,7 @@ export async function fetchMoviesTrending (page) {
     
 try{
     const responce = await axios.get(`${URL}/${mediaType}/${timeWindow}?api_key=${ApiKey}&page=${page}`);
-    return responce.data;
+    return responce.data.results;
 } catch (error) {
     console.error(error);
 }

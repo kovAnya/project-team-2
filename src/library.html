@@ -3,26 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
+    <title>Filmoteka</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="../src/images/favicon/icon.ico"
+      sizes="32x32"
+      type="image/x-icon"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./sass/index.scss" />
+    <link
+      rel="stylesheet"
+      title="theme"
+      href="./sass/components/_dark_theme.scss"
+      disabled
+    />
     <script type="module" src="./index.js"></script>
   </head>
 
-  <body>
+  <body data-page="library" data-weblocation="library">
     <include src="./partials/library-header.html"></include>
     <main>
-      <!-- <div class="container">
-        <section class="films-section">
-          <h2 class="visually-hidden">Films</h2>
-          <div class="js-not-film-card"></div>
-          <ul class="film-list js-main-film-list"></ul>
-          <div class="pagination_box"></div>
-        </section>
-      </div> -->
+      <include src="./partials/library-gallery.html"></include>
       <include src="./partials/modal_film.html"></include>
       <include src="./partials/pagination.html"></include>
     </main>
 
     <include src="./partials/footer.html"></include>
+    <include src="./partials/modal.html"></include>
+    <include src="./partials/modal-log-in.html"></include>
   </body>
 </html>
