@@ -71,6 +71,15 @@ export function processingNameFilm(title, name) {
 }
 //////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////Функция бработки рейтинга
+export function processingVoteAverage(vote_average) {
+  if (vote_average) {
+    return vote_average.toFixed(1);
+  } else {
+    return "0"
+  }
+}
+
 ///////////////////////////////////Данные с сервира закидываем в Локальное хранилище
 export async function saveInLocalStorage(dataFromServer) {
   let data = await dataFromServer;
@@ -109,10 +118,12 @@ export async function renderMoviesTrending(dataFromServer) {
         let releasedYear = ''; /// Год релиза
         let cardFilm = ''; /// Обьявление переменной для карточки фильма
         let nameFilm = '';
+        let voteAverage = '';
         poster = processingPoster(poster_path);
         releasedYear = processingReleasedYear(release_date, first_air_date);
         genres = processingGenre(genre_ids);
         nameFilm = processingNameFilm(title, name);
+        voteAverage = processingVoteAverage(vote_average)
 
         cardFilm = card(
           poster,
@@ -120,7 +131,7 @@ export async function renderMoviesTrending(dataFromServer) {
           genres,
           releasedYear,
           id,
-          vote_average
+          voteAverage
         );
 
         moviesElement.insertAdjacentHTML('beforeend', cardFilm); /// Добавляем сформированную карточку в HTML код
