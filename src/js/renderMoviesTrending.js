@@ -138,6 +138,6 @@ export async function renderMoviesTrending(dataFromServer) {
       }
     );
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 }
