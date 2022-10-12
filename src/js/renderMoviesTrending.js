@@ -74,8 +74,9 @@ export function processingNameFilm(title, name) {
 ////////////////////////////////////////////////////Функция бработки рейтинга
 export function processingVoteAverage(vote_average) {
   if (vote_average) {
-
     return vote_average.toFixed(1);
+  } else {
+    return "0"
   }
 }
 
