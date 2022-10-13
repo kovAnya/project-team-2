@@ -19,8 +19,8 @@ import {
 } from './renderMoviesTrending';
 import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
 import { addLocal } from './add_local_storage';
-
-const backdrop = document.querySelector('.modal__backdrop');
+import { backdropEl } from './refs';
+// const backdrop = document.querySelector('.backdrop');
 const filmsListRef = document.querySelector('.movies');
 const closeBtnRef = document.querySelector('.closeModal');
 const modal = document.querySelector('.modal__container');
@@ -52,7 +52,7 @@ function onFilmCardClick(e) {
     return;
   }
 
-  backdrop.classList.remove('is-hidden');
+  backdropEl.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
   document.addEventListener('keydown', onEscBtnPress);
   document.addEventListener('click', onBackdropClick);
@@ -174,7 +174,7 @@ function onCloseBtnClick() {
   filmImg.remove();
   filmInfo.remove();
 
-  backdrop.classList.add('is-hidden');
+  backdropEl.classList.add('is-hidden');
   document.body.style.overflow = 'scroll';
   document.removeEventListener('keydown', onEscBtnPress);
   document.removeEventListener('click', onBackdropClick);
@@ -189,7 +189,7 @@ function onEscBtnPress(e) {
 
 //Функція закриття модалки поза межами модалки
 function onBackdropClick(e) {
-  if (e.target === backdrop) {
+  if (e.target === backdropEl) {
     onCloseBtnClick();
   }
 }

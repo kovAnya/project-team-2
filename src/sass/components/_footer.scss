@@ -70,7 +70,6 @@
   cursor: pointer;
 }
 
-
 .footer__link:hover,
 .footer__link:focus {
   color: var(--accent-color);
@@ -127,20 +126,8 @@ body.modal-open {
   @media screen and (min-width: 600px) {
     width: 560px;
   }
-  // @media screen and (min-width: 768px) {
-  //   width: 560px;
-  // }
 }
 
-.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
-
-// .backdrop.is-hidden {
-//   transform: translateX(-100%);
-// }
 .footer__modal.is-hidden {
   transform: translateX(-100%);
 }
@@ -167,7 +154,7 @@ body.modal-open {
     width: calc((100% - 15px) / 2);
   }
   @media screen and (min-width: 480px) {
-    width: calc((100% - 15px*2) / 3);
+    width: calc((100% - 15px * 2) / 3);
   }
   @media screen and (min-width: 600px) {
     width: calc((100% - 15px * 3) / 4);
@@ -202,69 +189,26 @@ body.modal-open {
 }
 
 @media screen and (min-width: 768px) {
-    .modal__text {
-      font-size: 14px;
-    }
+  .modal__text {
+    font-size: 14px;
+  }
 
-    .modal__text--position {
-      font-size: 12px;
-    }
+  .modal__text--position {
+    font-size: 12px;
+  }
 }
-  
 
 .team-masters {
   margin-bottom: 20px;
   justify-content: space-evenly;
 }
 
-.modal__btn-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
-  border-radius: 50%;
+.modal__close-btn.footer-btn {
+  top: 4px;
+  right: 2px;
   border: 1px solid transparent;
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    border-color: var(--accent-color);
-    outline-color: var(--accent-color);
-  }
+  background-color: transparent;
 }
-
-.close-icon {
-  fill: var(--title-text-color);
-
-  .modal__btn-close:hover &,
-  .modal__btn-close:focus & {
-    fill: var(--accent-color);
-  }
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
-}
-
-// .modal__icon {
-
-// }
 
 .modal__icon:hover,
 .modal__icon:focus {
@@ -278,4 +222,3 @@ body.modal-open {
   width: 20px;
   height: 20px;
 }
-
