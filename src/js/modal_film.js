@@ -1,6 +1,14 @@
 import { fetchMoviesTrending } from './fetchMoviesTrending';
 import { getMovieGenres } from './genres';
-import { btnColor } from './add_local_storage';
+import {
+  btnColorWatch,
+  btnColorQueue,
+  searchLocalQueue,
+  searchLocalWatch,
+  classListWatch,
+  classListQueue,
+} from './add_local_storage';
+import { searchLocal } from './add_local_storage';
 import {
   renderMoviesTrending,
   processingReleasedYear,
@@ -54,8 +62,8 @@ function onFilmCardClick(e) {
 
   /////Данные с Локального хранилища
   let dataLocalStorage = dataInLocalStorage();
-  
-console.log(dataLocalStorage)
+
+  // console.log(dataLocalStorage);
   let changeFilm = dataLocalStorage.find(film => film.id === idImageNumber);
 
   ///////////////Переменные для отрисовки Модалки
@@ -81,17 +89,19 @@ console.log(dataLocalStorage)
   );
 
   const obj = addLocal(changeFilm);
+
   const btnWatch = document.querySelector('.btn__watch');
   const btnQueue = document.querySelector('.btn__queue');
-  btnWatch.addEventListener('click', () => {
-    btnQueue.textContent = 'You add film to watched';
-    btnColor(btnWatch, btnQueue);
-    onWatchedBtnClick(obj);
+
+  btnWatch.classList.remove('btn__watch__remove');
+  btnQueue.classList.remove('btn__queue__remove');
+  searchLocalQueue(obj, btnQueue, btnWatch);
+  searchLocalWatch(obj, btnWatch, btnQueue);
+  btnWatch.addEventListener('click', e => {
+    classListWatch(btnWatch, obj);
   });
   btnQueue.addEventListener('click', () => {
-    btnWatch.textContent = 'You add film to queue ';
-    btnColor(btnQueue, btnWatch);
-    onQueueBtnClick(obj);
+    classListQueue(btnQueue, obj);
   });
 }
 
@@ -151,8 +161,8 @@ function makeFilmModalMarkup(
         }
       </div>
       <div class="film__button__wrapper">
-        <button type="button" class="film__button btn__watch">Add to watched</button>
-        <button type="button" class="film__button btn__queue">Add to queue</button>
+        <button type="button" class="film__button btn__watch btn__watch__remove">Add to watched</button>
+        <button type="button" class="film__button btn__queue btn__queue__remove">Add to queue</button>
       </div>
       </div>`;
 }

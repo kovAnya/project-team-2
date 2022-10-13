@@ -153,8 +153,7 @@
     cursor: pointer;
     border: 1px solid #000000;
     transition: all 300ms cubic-bezier(0.38, 0.53, 0.8, 0.71);
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: #ff6b08;
       color: #ffffff;
       border: 1px solid #ff6b08;
@@ -223,5 +222,4 @@
     }
     
 }
-
   
