@@ -1,3 +1,7 @@
+// Тёмная тема спиннера
+
+
+
 /* Стиль кнопки (перемикача)*/
 .change_theme {
   border: 1px solid white;
@@ -27,3 +31,9 @@ body {
 .tui-page-btn {
   color: white;
 }
+
+
+.loader.loader-black {
+  background-color: #222222;
+}
+

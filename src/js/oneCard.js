@@ -30,7 +30,7 @@ export function card(
           <div class="movie__category">${genre_ids} ${
     release_date ? `| ${release_date}` : ''
   }
-          <span class="film__rating--orange">${voteAverage}</span></div>
+          <span class="film__rating--orange visually-hidden">${voteAverage}</span></div>
         </div>
       </div>`;
   return oneCard;
