@@ -31,6 +31,7 @@ const refs = {
   signInLink: document.querySelector('.signIn_now__link'),
   logOut: document.querySelector('#header-logOut'),
   loader: document.querySelector('.loader'),
+  
 };
 export const {
   toTopBtn,
@@ -61,6 +62,7 @@ export const {
   signInLink,
   logOut,
   loader,
+  
 } = refs;
 
 // До футера
