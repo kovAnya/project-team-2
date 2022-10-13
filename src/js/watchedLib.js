@@ -7,14 +7,27 @@ openWatchedBtn.addEventListener('click', onWatchedBtnClick);
 openQueueBtn.addEventListener('click', onQueueBtnClick);
 window.addEventListener('load', onWatchedBtnClick);
 
-function onWatchedBtnClick() {
+async function onWatchedBtnClick() {
   moviesElement.innerHTML = '';
-  renderMoviesTrending(FilmsInLocalStorage('Watched'));
+  openWatchedBtn.classList.add('button--accent');
+  openQueueBtn.classList.remove('button--accent');
+  await renderMoviesTrending(FilmsInLocalStorage('Watched'));
+  addVotesToCard();
 }
 
-function onQueueBtnClick() {
+async function onQueueBtnClick() {
   moviesElement.innerHTML = '';
-  renderMoviesTrending(FilmsInLocalStorage('Queue'));
+  openQueueBtn.classList.add('button--accent');
+  openWatchedBtn.classList.remove('button--accent');
+  await renderMoviesTrending(FilmsInLocalStorage('Queue'));
+  addVotesToCard();
+}
+
+function addVotesToCard() {
+  const votes = document.querySelectorAll('.film__rating--orange');
+  votes.forEach(vote => {
+    vote.classList.remove('visually-hidden');
+  });
 }
 
 //get films from me library

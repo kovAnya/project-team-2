@@ -7,6 +7,7 @@ import {
   processingGenre,
   processingNameFilm,
   processingPoster,
+  processingVoteAverage,
 } from './renderMoviesTrending';
 import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
 import { addLocal } from './add_local_storage';
@@ -60,7 +61,7 @@ console.log(dataLocalStorage)
   ///////////////Переменные для отрисовки Модалки
   let poster_path = processingPoster(changeFilm.poster_path);
   let title = processingNameFilm(changeFilm.title, changeFilm.name);
-  let vote_average = changeFilm.vote_average;
+  let vote_average = processingVoteAverage(changeFilm.vote_average);
   let vote_count = changeFilm.vote_count;
   let popularity = changeFilm.popularity;
   let genre_ids = processingGenre(changeFilm.genre_ids);
