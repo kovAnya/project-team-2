@@ -1,11 +1,5 @@
 
-// import { openModalFooterEl, backdropEl, modalFooterEl, closeModalFooterBtnEl } from "./refs";
-
-const openModalFooterEl = document.querySelector('[data-team-modal-open]');
-
-const backdropEl = document.querySelector('[data-footer-backdrop]');
-const modalFooterEl = document.querySelector('[data-footer-modal]');
-const closeModalFooterBtnEl = document.querySelector('[data-team-modal-close]');
+import { openModalFooterEl, backdropEl, modalFooterEl, closeModalFooterBtnEl } from "./refs";
 
 openModalFooterEl.addEventListener('click', onOpenFooterModal);
 
@@ -25,18 +19,19 @@ function onCloseFooterModal() {
 
 // Функция появления/исчезания Backdrop
 function toggleBackdrop() {
-    document.body.classList.toggle('modal-open');
     backdropEl.classList.toggle('is-hidden');
 } 
 
 // Функция закрытия модалки по клику на елемент
 function onOpenModal(elem) {
     elem.classList.remove('is-hidden');
+    document.body.style.overflow = 'hidden';
 }
 
 // Функция закрытия модалки по клику на елемент
 function onCloseModal(elem) {
     elem.classList.add('is-hidden');
+    document.body.style.overflow = 'scroll';
     removeListeners();
 }
 
