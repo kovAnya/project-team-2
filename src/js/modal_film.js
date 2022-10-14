@@ -173,6 +173,7 @@ function onCloseBtnClick() {
   const filmInfo = document.querySelector('.film__information');
   filmImg.remove();
   filmInfo.remove();
+  onCloseCardBtnClick();
 
   backdropEl.classList.add('is-hidden');
   document.body.style.overflow = 'scroll';

@@ -30,6 +30,12 @@ function addVotesToCard() {
   });
 }
 
+export function onCloseCardBtnClick() {
+  if (openQueueBtn.classList.contains('button--accent')) {
+    return onQueueBtnClick();
+  } else onWatchedBtnClick();
+}
+
 //get films from me library
 export function FilmsInLocalStorage(category) {
   let dataInLocalStorage = localStorage.getItem(category);
