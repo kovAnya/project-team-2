@@ -53,6 +53,7 @@ function onFilmCardClick(e) {
   }
 
   backdropEl.classList.remove('is-hidden');
+  modal.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
   document.addEventListener('keydown', onEscBtnPress);
   document.addEventListener('click', onBackdropClick);
@@ -175,6 +176,7 @@ function onCloseBtnClick() {
   filmInfo.remove();
 
   backdropEl.classList.add('is-hidden');
+  modal.classList.add('is-hidden');
   document.body.style.overflow = 'scroll';
   document.removeEventListener('keydown', onEscBtnPress);
   document.removeEventListener('click', onBackdropClick);
