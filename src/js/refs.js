@@ -65,7 +65,7 @@ export const {
 
 // До футера
 export const openModalFooterEl = document.querySelector('[data-team-modal-open]');
-export const backdropEl = document.querySelector('[data-footer-backdrop]');
+export const backdropEl = document.querySelector('.backdrop');
 export const modalFooterEl = document.querySelector('[data-footer-modal]');
 export const closeModalFooterBtnEl = document.querySelector('[data-team-modal-close]');
 
