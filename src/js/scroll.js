@@ -3,7 +3,7 @@ import { toTopBtn } from './refs';
 window.addEventListener('scroll', onScroll);
 if (toTopBtn) toTopBtn.addEventListener('click', onToTopBtn);
 
-function onScroll() {
+export function onScroll() {
   setThemOnButtonToTop();
   const scrolled = window.pageYOffset;
   const coords = document.documentElement.clientHeight;
@@ -14,7 +14,7 @@ function onScroll() {
     toTopBtn.classList.remove('btn-to-top--visible');
   }
 }
-function onToTopBtn() {
+export function onToTopBtn() {
   if (window.pageYOffset > 0) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

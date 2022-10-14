@@ -76,7 +76,7 @@ export function processingVoteAverage(vote_average) {
   if (vote_average) {
     return vote_average.toFixed(1);
   } else {
-    return "0"
+    return '0';
   }
 }
 
@@ -93,7 +93,7 @@ export async function saveInLocalStorage(dataFromServer) {
 export async function renderMoviesTrending(dataFromServer) {
   try {
     let data = await dataFromServer; ////Массив с 20 фильмами
-    if (!data) {
+    if (!data || data.length === 0) {
       messageElement.innerHTML =
         "<p class = 'info-message'>You haven't added any movies yet. Please use search to find relevant movies</p>";
       return;
@@ -123,7 +123,7 @@ export async function renderMoviesTrending(dataFromServer) {
         releasedYear = processingReleasedYear(release_date, first_air_date);
         genres = processingGenre(genre_ids);
         nameFilm = processingNameFilm(title, name);
-        voteAverage = processingVoteAverage(vote_average)
+        voteAverage = processingVoteAverage(vote_average);
 
         cardFilm = card(
           poster,

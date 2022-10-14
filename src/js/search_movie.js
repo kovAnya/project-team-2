@@ -1,4 +1,8 @@
 import { ApiKey, page } from './refs';
+import { pagination } from './pagination';
+import { fetchMoviesTrending } from './fetchMoviesTrending';
+import { onScroll, onToTopBtn } from './scroll';
+import { renderMoviesTrending } from './renderMoviesTrending';
 
 const axios = require('axios').default;
 
@@ -12,6 +16,7 @@ const moviesElement = document.querySelector('.movies');
 
 // let pError = document.querySelector('.header__error');
 let inputValue = '';
+let searchFilms = true;
 // const URL_SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&language=en-US&query=${inputValue}&page=1&include_adult=false`;
 
 // Создание нового свойства с годом (для всех)
@@ -25,11 +30,15 @@ let inputValue = '';
 //   return genres;
 // }g
 
-async function fetchFilms(page) {
+export async function fetchFilms(page) {
   try {
     const fetchResult = await axios.get(
       `https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&language=en-US&query=${inputValue}&page=${page}&include_adult=false`
     );
+    searchFilms = false;
+    if (page === 1) {
+      pagination.reset(fetchResult.data.total_results);
+    }
     console.log(fetchResult.data);
     return fetchResult.data.results;
   } catch (error) {
@@ -45,6 +54,18 @@ async function searchFilm(e) {
   moviesElement.innerHTML = '';
   await renderMoviesTrending(fetchFilms(page));
 }
+
+pagination.on('afterMove', event => {
+  const currentPage = event.page;
+  moviesElement.innerHTML = '';
+  if (searchFilms) {
+    renderMoviesTrending(fetchMoviesTrending(currentPage));
+  } else {
+    renderMoviesTrending(fetchFilms(currentPage));
+  }
+  onScroll();
+  onToTopBtn();
+});
 
 searchFilmForm.addEventListener('submit', searchFilm);
 

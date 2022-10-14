@@ -116,7 +116,15 @@ a {
   }
 }
 
+
+.btn-to-top--dark {
+  background-color: orange;
+  &:hover {
+    color: purple;
+  }
+}
 .info-message {
   font-size: 16px;
   text-align: center;
+
 }

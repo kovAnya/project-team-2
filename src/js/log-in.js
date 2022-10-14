@@ -39,6 +39,7 @@ import { chooseThemeForNotiflix } from './notiflix';
 const firebaseConfig = {
   apiKey: 'AIzaSyCSSJeVNLm6Ue7U_eapPG-h8gvoiIko3U8',
   authDomain: 'filmoteka-d2454.firebaseapp.com',
+  databaseURL: 'https://filmoteka-d2454-default-rtdb.firebaseio.com/',
   projectId: 'filmoteka-d2454',
   storageBucket: 'filmoteka-d2454.appspot.com',
   messagingSenderId: '602672675690',
@@ -170,7 +171,7 @@ function onLogin(event) {
       onUserLogIn();
       Notiflix.Report.success(
         'Hello there!',
-        'Welcome back to Filmoteka! We can help you whith movies',
+        'Welcome back to Filmoteka! We can help you with movies',
         'It`s cool! I`m happy!'
       );
     })
@@ -192,7 +193,7 @@ if (logOut) {
     chooseThemeForNotiflix();
     Notiflix.Confirm.show(
       'Exit confirmation',
-      'We hope you had a good time with our project! Do you realy want leave us?',
+      'We hope you had a good time with our project! Do you really want to leave us?',
       'Yes, Bro, I need to go',
       'What I`m doing? I should stay',
       function okCb() {
