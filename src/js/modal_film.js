@@ -17,13 +17,17 @@ import {
   processingPoster,
   processingVoteAverage,
 } from './renderMoviesTrending';
-import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
+// import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
 import { addLocal } from './add_local_storage';
-import { backdropEl } from './refs';
-// const backdrop = document.querySelector('.backdrop');
-const filmsListRef = document.querySelector('.movies');
-const closeBtnRef = document.querySelector('.closeModal');
-const modal = document.querySelector('.modal__container');
+import {
+  backdropEl,
+  filmsListRef,
+  closeBtnRef,
+  modalFilm,
+  openWatchedBtn,
+  openQueueBtn,
+} from './refs';
+import { onCloseCardBtnClick, FilmsInLocalStorage } from './watchedLib';
 
 let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
 let fileSize = 'w400';
@@ -31,6 +35,8 @@ let stubPicture =
   'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp';
 
 ////////////////////////////////Получаем данные с Локального Хранилища
+let watchedStorageLength = 0;
+let queueStorageLength = 0;
 
 function dataInLocalStorage() {
   let dataInLocalStorage = localStorage.getItem('dataInApi');
@@ -51,9 +57,11 @@ function onFilmCardClick(e) {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
+  watchedStorageLength = FilmsInLocalStorage('Watched').length;
+  queueStorageLength = FilmsInLocalStorage('Queue').length;
 
   backdropEl.classList.remove('is-hidden');
-  modal.classList.remove('is-hidden');
+  modalFilm.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
   document.addEventListener('keydown', onEscBtnPress);
   document.addEventListener('click', onBackdropClick);
@@ -76,7 +84,7 @@ function onFilmCardClick(e) {
   let genre_ids = processingGenre(changeFilm.genre_ids);
   let overview = changeFilm.overview;
 
-  modal.insertAdjacentHTML(
+  modalFilm.insertAdjacentHTML(
     'afterbegin',
     makeFilmModalMarkup(
       poster_path,
@@ -174,9 +182,15 @@ function onCloseBtnClick() {
   const filmInfo = document.querySelector('.film__information');
   filmImg.remove();
   filmInfo.remove();
-
+  if (
+    filmsListRef.dataset.library === 'library' &&
+    (watchedStorageLength !== FilmsInLocalStorage('Watched').length ||
+      queueStorageLength !== FilmsInLocalStorage('Queue').length)
+  ) {
+    onCloseCardBtnClick();
+  }
   backdropEl.classList.add('is-hidden');
-  modal.classList.add('is-hidden');
+  modalFilm.classList.add('is-hidden');
   document.body.style.overflow = 'scroll';
   document.removeEventListener('keydown', onEscBtnPress);
   document.removeEventListener('click', onBackdropClick);

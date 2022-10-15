@@ -64,11 +64,15 @@ export const {
 } = refs;
 
 // До футера
-export const openModalFooterEl = document.querySelector('[data-team-modal-open]');
+export const openModalFooterEl = document.querySelector(
+  '[data-team-modal-open]'
+);
 export const backdropEl = document.querySelector('.backdrop');
 
 export const modalFooterEl = document.querySelector('[data-footer-modal]');
-export const closeModalFooterBtnEl = document.querySelector('[data-team-modal-close]');
+export const closeModalFooterBtnEl = document.querySelector(
+  '[data-team-modal-close]'
+);
 
 // До бібліотеки
 export const openWatchedBtn = document.querySelector('.js-watched');
@@ -78,3 +82,7 @@ export const openQueueBtn = document.querySelector('.js-queue');
 
 export const bodyElement = document.querySelector('body');
 
+// Модалка
+export const filmsListRef = document.querySelector('.movies');
+export const closeBtnRef = document.querySelector('.closeModal');
+export const modalFilm = document.querySelector('.modal__container');
