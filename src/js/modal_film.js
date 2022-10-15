@@ -57,8 +57,12 @@ function onFilmCardClick(e) {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
-  watchedStorageLength = FilmsInLocalStorage('Watched').length;
-  queueStorageLength = FilmsInLocalStorage('Queue').length;
+  if (localStorage.getItem('Watched')) {
+    watchedStorageLength = FilmsInLocalStorage('Watched').length;
+  }
+  if (localStorage.getItem('Queue')) {
+    queueStorageLength = FilmsInLocalStorage('Queue').length;
+  }
 
   backdropEl.classList.remove('is-hidden');
   modalFilm.classList.remove('is-hidden');
