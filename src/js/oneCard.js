@@ -19,7 +19,8 @@ export function card(
             data-src="${poster_path}"
             class="movie_cover lazyload"
             alt="${title}"
-            data-id="${id}"            
+            data-id="${id}"   
+            scr = "https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp"
           />`
             : ''
         }
