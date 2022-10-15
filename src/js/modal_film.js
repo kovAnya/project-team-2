@@ -17,10 +17,17 @@ import {
   processingPoster,
   processingVoteAverage,
 } from './renderMoviesTrending';
-import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
+// import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
 import { addLocal } from './add_local_storage';
-import { backdropEl, filmsListRef, closeBtnRef, modalFilm } from './refs';
-import { onCloseCardBtnClick } from './watchedLib';
+import {
+  backdropEl,
+  filmsListRef,
+  closeBtnRef,
+  modalFilm,
+  openWatchedBtn,
+  openQueueBtn,
+} from './refs';
+import { onCloseCardBtnClick, FilmsInLocalStorage } from './watchedLib';
 
 let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
 let fileSize = 'w400';
@@ -28,6 +35,8 @@ let stubPicture =
   'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp';
 
 ////////////////////////////////Получаем данные с Локального Хранилища
+let watchedStorageLength = 0;
+let queueStorageLength = 0;
 
 function dataInLocalStorage() {
   let dataInLocalStorage = localStorage.getItem('dataInApi');
@@ -48,6 +57,8 @@ function onFilmCardClick(e) {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
+  watchedStorageLength = FilmsInLocalStorage('Watched').length;
+  queueStorageLength = FilmsInLocalStorage('Queue').length;
 
   backdropEl.classList.remove('is-hidden');
   modalFilm.classList.remove('is-hidden');
@@ -171,10 +182,13 @@ function onCloseBtnClick() {
   const filmInfo = document.querySelector('.film__information');
   filmImg.remove();
   filmInfo.remove();
-  // if (filmsListRef.dataset.library) {
-  // console.log('gallery');
-  onCloseCardBtnClick();
-  // }
+  if (
+    filmsListRef.dataset.library === 'library' &&
+    (watchedStorageLength !== FilmsInLocalStorage('Watched').length ||
+      queueStorageLength !== FilmsInLocalStorage('Queue').length)
+  ) {
+    onCloseCardBtnClick();
+  }
   backdropEl.classList.add('is-hidden');
   modalFilm.classList.add('is-hidden');
   document.body.style.overflow = 'scroll';

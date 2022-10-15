@@ -3,9 +3,12 @@ import { renderMoviesTrending } from './renderMoviesTrending';
 
 openWatchedBtn.addEventListener('click', onWatchedBtnClick);
 openQueueBtn.addEventListener('click', onQueueBtnClick);
-window.addEventListener('load', onWatchedBtnClick);
 
-async function onWatchedBtnClick() {
+if (filmsListRef.dataset.library === 'library') {
+  onWatchedBtnClick();
+}
+
+export async function onWatchedBtnClick() {
   filmsListRef.innerHTML = '';
   openWatchedBtn.classList.add('button--accent');
   openQueueBtn.classList.remove('button--accent');
@@ -13,7 +16,7 @@ async function onWatchedBtnClick() {
   addVotesToCard();
 }
 
-async function onQueueBtnClick() {
+export async function onQueueBtnClick() {
   filmsListRef.innerHTML = '';
   openQueueBtn.classList.add('button--accent');
   openWatchedBtn.classList.remove('button--accent');
@@ -28,12 +31,6 @@ function addVotesToCard() {
   });
 }
 
-export function onCloseCardBtnClick() {
-  if (openQueueBtn.classList.contains('button--accent')) {
-    return onQueueBtnClick();
-  } else onWatchedBtnClick();
-}
-
 //get films from me library
 export function FilmsInLocalStorage(category) {
   let dataInLocalStorage = localStorage.getItem(category);
@@ -43,5 +40,14 @@ export function FilmsInLocalStorage(category) {
     return (parsedDataInLocalStorage = JSON.parse(dataInLocalStorage));
   } catch (error) {
     console.warn('Помилка парсингу даних');
+  }
+}
+
+//update page in gallery after removing film
+export function onCloseCardBtnClick() {
+  if (openQueueBtn.classList.contains('button--accent')) {
+    onQueueBtnClick();
+  } else if (openWatchedBtn.classList.contains('button--accent')) {
+    onWatchedBtnClick();
   }
 }
