@@ -19,8 +19,7 @@ export function card(
             data-src="${poster_path}"
             class="movie_cover lazyload"
             alt="${title}"
-            data-id="${id}"
-            src ="../src/images/placeholder/no-image_desktop.jpg"
+            data-id="${id}"            
           />`
             : ''
         }
