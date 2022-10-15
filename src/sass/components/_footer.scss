@@ -70,7 +70,6 @@
   cursor: pointer;
 }
 
-
 .footer__link:hover,
 .footer__link:focus {
   color: var(--accent-color);
@@ -127,20 +126,8 @@ body.modal-open {
   @media screen and (min-width: 600px) {
     width: 560px;
   }
-  // @media screen and (min-width: 768px) {
-  //   width: 560px;
-  // }
 }
 
-.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
-
-// .backdrop.is-hidden {
-//   transform: translateX(-100%);
-// }
 .footer__modal.is-hidden {
   transform: translateX(-100%);
 }
@@ -156,6 +143,7 @@ body.modal-open {
 }
 
 .modal__item {
+  position: relative;
   border-radius: 6px;
   overflow: hidden;
   width: 100px;
@@ -167,7 +155,7 @@ body.modal-open {
     width: calc((100% - 15px) / 2);
   }
   @media screen and (min-width: 480px) {
-    width: calc((100% - 15px*2) / 3);
+    width: calc((100% - 15px * 2) / 3);
   }
   @media screen and (min-width: 600px) {
     width: calc((100% - 15px * 3) / 4);
@@ -178,7 +166,6 @@ body.modal-open {
 }
 
 .modal__img {
-  position: relative;
   background-color: var(--img-background-color);
   width: 100%;
   height: 100px;
@@ -202,69 +189,26 @@ body.modal-open {
 }
 
 @media screen and (min-width: 768px) {
-    .modal__text {
-      font-size: 14px;
-    }
+  .modal__text {
+    font-size: 14px;
+  }
 
-    .modal__text--position {
-      font-size: 12px;
-    }
+  .modal__text--position {
+    font-size: 12px;
+  }
 }
-  
 
 .team-masters {
   margin-bottom: 20px;
   justify-content: space-evenly;
 }
 
-.modal__btn-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
-  border-radius: 50%;
+.modal__close-btn.footer-btn {
+  top: 4px;
+  right: 2px;
   border: 1px solid transparent;
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    border-color: var(--accent-color);
-    outline-color: var(--accent-color);
-  }
+  background-color: transparent;
 }
-
-.close-icon {
-  fill: var(--title-text-color);
-
-  .modal__btn-close:hover &,
-  .modal__btn-close:focus & {
-    fill: var(--accent-color);
-  }
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
-}
-
-// .modal__icon {
-
-// }
 
 .modal__icon:hover,
 .modal__icon:focus {
@@ -277,52 +221,4 @@ body.modal-open {
   right: 3px;
   width: 20px;
   height: 20px;
-}
-
-//==========================================
-//============ footer styles ==============//
-//==========================================
-
-.scroll_link {
-  position: fixed;
-  bottom: 4vh;
-  right: 5vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 38px;
-  height: 38px;
-  background-color: rgb(240, 240, 240);
-  border: 2px solid transparent;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 4;
-  transition: transform 250ms ease,
-    box-shadow 200ms ease;
-      box-shadow: 0px 0px 6px 2px rgba(140, 140, 140, 1);
-        -webkit-box-shadow: 0px 0px 6px 2px rgba(140, 140, 140, 1);
-        -moz-box-shadow: 0px 0px 6px 2px rgba(140, 140, 140, 1);
-
-        @media screen and (min-width: 768px) {
-            width: 50px;
-            height: 50px;
-        }
-
-                @media screen and (min-width: 1280px) {
-                    width: 55px;
-                    height: 55px;
-                }
-
-  &:hover,
-  &:focus {
-    transform: scale(1.2);
-    // background-color: white;
-    box-shadow: 0px 0px 6px 2px var(--accent-color);
-      -webkit-box-shadow: 0px 0px 6px 2px var(--accent-color);
-      -moz-box-shadow: 0px 0px 6px 2px var(--accent-color);
-  }
-}
-
-.scroll-icon {
-  transform: rotate(270deg);
 }

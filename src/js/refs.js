@@ -66,15 +66,11 @@ export const {
 } = refs;
 
 // До футера
-export const openModalEl = document.querySelector('[data-team-modal-open]');
-export const closeModalBtnEl = document.querySelector(
-  '[data-team-modal-close]'
-);
+export const openModalFooterEl = document.querySelector('[data-team-modal-open]');
 export const backdropEl = document.querySelector('.backdrop');
-// export const openModalFooterEl = document.querySelector('[data-team-modal-open]');
-// export const backdropEl = document.querySelector('[data-footer-backdrop]');
-// export const modalFooterEl = document.querySelector('[data-footer-modal]');
-// export const closeModalFooterBtnEl = document.querySelector('[data-team-modal-close]');
+
+export const modalFooterEl = document.querySelector('[data-footer-modal]');
+export const closeModalFooterBtnEl = document.querySelector('[data-team-modal-close]');
 
 // До бібліотеки
 export const openWatchedBtn = document.querySelector('.js-watched');
@@ -83,3 +79,4 @@ export const openQueueBtn = document.querySelector('.js-queue');
 // Для перемикання сторінок
 
 export const bodyElement = document.querySelector('body');
+

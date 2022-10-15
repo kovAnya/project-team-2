@@ -4,6 +4,7 @@ import { getMovieGenres } from './genres';
 
 ///////////////Елемент одной карточки в HTML документе
 const moviesElement = document.querySelector('.movies');
+const messageElement = document.querySelector('.info-message');
 ///////////////////////////////////////////////////////
 
 ////////////////Путь и размер запроса картинок + заглушка картинки
@@ -70,6 +71,15 @@ export function processingNameFilm(title, name) {
 }
 //////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////Функция бработки рейтинга
+export function processingVoteAverage(vote_average) {
+  if (vote_average) {
+    return vote_average.toFixed(1);
+  } else {
+    return '0';
+  }
+}
+
 ///////////////////////////////////Данные с сервира закидываем в Локальное хранилище
 export async function saveInLocalStorage(dataFromServer) {
   let data = await dataFromServer;
@@ -83,7 +93,11 @@ export async function saveInLocalStorage(dataFromServer) {
 export async function renderMoviesTrending(dataFromServer) {
   try {
     let data = await dataFromServer; ////Массив с 20 фильмами
-
+    if (!data || data.length === 0) {
+      messageElement.innerHTML =
+        "<p class = 'info-message'>You haven't added any movies yet. Please use search to find relevant movies</p>";
+      return;
+    } else messageElement.innerHTML = '';
     saveInLocalStorage(dataFromServer);
 
     data.map(
@@ -104,10 +118,12 @@ export async function renderMoviesTrending(dataFromServer) {
         let releasedYear = ''; /// Год релиза
         let cardFilm = ''; /// Обьявление переменной для карточки фильма
         let nameFilm = '';
+        let voteAverage = '';
         poster = processingPoster(poster_path);
         releasedYear = processingReleasedYear(release_date, first_air_date);
         genres = processingGenre(genre_ids);
         nameFilm = processingNameFilm(title, name);
+        voteAverage = processingVoteAverage(vote_average);
 
         cardFilm = card(
           poster,
@@ -115,13 +131,13 @@ export async function renderMoviesTrending(dataFromServer) {
           genres,
           releasedYear,
           id,
-          vote_average
+          voteAverage
         );
 
         moviesElement.insertAdjacentHTML('beforeend', cardFilm); /// Добавляем сформированную карточку в HTML код
       }
     );
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 }

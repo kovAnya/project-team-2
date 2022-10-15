@@ -1,17 +1,26 @@
 import { fetchMoviesTrending } from './fetchMoviesTrending';
 import { getMovieGenres } from './genres';
-import { btnColor } from './add_local_storage';
+import {
+  btnColorWatch,
+  btnColorQueue,
+  searchLocalQueue,
+  searchLocalWatch,
+  classListWatch,
+  classListQueue,
+} from './add_local_storage';
+import { searchLocal } from './add_local_storage';
 import {
   renderMoviesTrending,
   processingReleasedYear,
   processingGenre,
   processingNameFilm,
   processingPoster,
+  processingVoteAverage,
 } from './renderMoviesTrending';
 import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
 import { addLocal } from './add_local_storage';
-
-const backdrop = document.querySelector('.modal__backdrop');
+import { backdropEl } from './refs';
+// const backdrop = document.querySelector('.backdrop');
 const filmsListRef = document.querySelector('.movies');
 const closeBtnRef = document.querySelector('.closeModal');
 const modal = document.querySelector('.modal__container');
@@ -43,7 +52,8 @@ function onFilmCardClick(e) {
     return;
   }
 
-  backdrop.classList.remove('is-hidden');
+  backdropEl.classList.remove('is-hidden');
+  modal.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
   document.addEventListener('keydown', onEscBtnPress);
   document.addEventListener('click', onBackdropClick);
@@ -53,14 +63,14 @@ function onFilmCardClick(e) {
 
   /////Данные с Локального хранилища
   let dataLocalStorage = dataInLocalStorage();
-  
-console.log(dataLocalStorage)
+
+  // console.log(dataLocalStorage);
   let changeFilm = dataLocalStorage.find(film => film.id === idImageNumber);
 
   ///////////////Переменные для отрисовки Модалки
   let poster_path = processingPoster(changeFilm.poster_path);
   let title = processingNameFilm(changeFilm.title, changeFilm.name);
-  let vote_average = changeFilm.vote_average;
+  let vote_average = processingVoteAverage(changeFilm.vote_average);
   let vote_count = changeFilm.vote_count;
   let popularity = changeFilm.popularity;
   let genre_ids = processingGenre(changeFilm.genre_ids);
@@ -80,17 +90,19 @@ console.log(dataLocalStorage)
   );
 
   const obj = addLocal(changeFilm);
+
   const btnWatch = document.querySelector('.btn__watch');
   const btnQueue = document.querySelector('.btn__queue');
-  btnWatch.addEventListener('click', () => {
-    btnQueue.textContent = 'You add film to watched';
-    btnColor(btnWatch, btnQueue);
-    onWatchedBtnClick(obj);
+
+  btnWatch.classList.remove('btn__watch__remove');
+  btnQueue.classList.remove('btn__queue__remove');
+  searchLocalQueue(obj, btnQueue, btnWatch);
+  searchLocalWatch(obj, btnWatch, btnQueue);
+  btnWatch.addEventListener('click', e => {
+    classListWatch(btnWatch, obj);
   });
   btnQueue.addEventListener('click', () => {
-    btnWatch.textContent = 'You add film to queue ';
-    btnColor(btnQueue, btnWatch);
-    onQueueBtnClick(obj);
+    classListQueue(btnQueue, obj);
   });
 }
 
@@ -150,8 +162,8 @@ function makeFilmModalMarkup(
         }
       </div>
       <div class="film__button__wrapper">
-        <button type="button" class="film__button btn__watch">Add to watched</button>
-        <button type="button" class="film__button btn__queue">Add to queue</button>
+        <button type="button" class="film__button btn__watch btn__watch__remove">Add to watched</button>
+        <button type="button" class="film__button btn__queue btn__queue__remove">Add to queue</button>
       </div>
       </div>`;
 }
@@ -163,7 +175,8 @@ function onCloseBtnClick() {
   filmImg.remove();
   filmInfo.remove();
 
-  backdrop.classList.add('is-hidden');
+  backdropEl.classList.add('is-hidden');
+  modal.classList.add('is-hidden');
   document.body.style.overflow = 'scroll';
   document.removeEventListener('keydown', onEscBtnPress);
   document.removeEventListener('click', onBackdropClick);
@@ -178,7 +191,7 @@ function onEscBtnPress(e) {
 
 //Функція закриття модалки поза межами модалки
 function onBackdropClick(e) {
-  if (e.target === backdrop) {
+  if (e.target === backdropEl) {
     onCloseBtnClick();
   }
 }

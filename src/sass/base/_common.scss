@@ -115,3 +115,16 @@ a {
     transform: scale(1.2) rotate(90deg);
   }
 }
+
+
+.btn-to-top--dark {
+  background-color: orange;
+  &:hover {
+    color: purple;
+  }
+}
+.info-message {
+  font-size: 16px;
+  text-align: center;
+
+}
