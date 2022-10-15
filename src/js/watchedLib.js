@@ -1,14 +1,12 @@
-import { openWatchedBtn, openQueueBtn } from './refs';
+import { openWatchedBtn, openQueueBtn, filmsListRef } from './refs';
 import { renderMoviesTrending } from './renderMoviesTrending';
-
-const moviesElement = document.querySelector('.movies');
 
 openWatchedBtn.addEventListener('click', onWatchedBtnClick);
 openQueueBtn.addEventListener('click', onQueueBtnClick);
 window.addEventListener('load', onWatchedBtnClick);
 
 async function onWatchedBtnClick() {
-  moviesElement.innerHTML = '';
+  filmsListRef.innerHTML = '';
   openWatchedBtn.classList.add('button--accent');
   openQueueBtn.classList.remove('button--accent');
   await renderMoviesTrending(FilmsInLocalStorage('Watched'));
@@ -16,7 +14,7 @@ async function onWatchedBtnClick() {
 }
 
 async function onQueueBtnClick() {
-  moviesElement.innerHTML = '';
+  filmsListRef.innerHTML = '';
   openQueueBtn.classList.add('button--accent');
   openWatchedBtn.classList.remove('button--accent');
   await renderMoviesTrending(FilmsInLocalStorage('Queue'));

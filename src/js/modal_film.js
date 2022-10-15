@@ -19,11 +19,8 @@ import {
 } from './renderMoviesTrending';
 import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
 import { addLocal } from './add_local_storage';
-import { backdropEl } from './refs';
-// const backdrop = document.querySelector('.backdrop');
-const filmsListRef = document.querySelector('.movies');
-const closeBtnRef = document.querySelector('.closeModal');
-const modal = document.querySelector('.modal__container');
+import { backdropEl, filmsListRef, closeBtnRef, modalFilm } from './refs';
+import { onCloseCardBtnClick } from './watchedLib';
 
 let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
 let fileSize = 'w400';
@@ -53,7 +50,7 @@ function onFilmCardClick(e) {
   }
 
   backdropEl.classList.remove('is-hidden');
-  modal.classList.remove('is-hidden');
+  modalFilm.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
   document.addEventListener('keydown', onEscBtnPress);
   document.addEventListener('click', onBackdropClick);
@@ -76,7 +73,7 @@ function onFilmCardClick(e) {
   let genre_ids = processingGenre(changeFilm.genre_ids);
   let overview = changeFilm.overview;
 
-  modal.insertAdjacentHTML(
+  modalFilm.insertAdjacentHTML(
     'afterbegin',
     makeFilmModalMarkup(
       poster_path,
@@ -174,10 +171,12 @@ function onCloseBtnClick() {
   const filmInfo = document.querySelector('.film__information');
   filmImg.remove();
   filmInfo.remove();
+  // if (filmsListRef.dataset.library) {
+  // console.log('gallery');
   onCloseCardBtnClick();
-
+  // }
   backdropEl.classList.add('is-hidden');
-  modal.classList.add('is-hidden');
+  modalFilm.classList.add('is-hidden');
   document.body.style.overflow = 'scroll';
   document.removeEventListener('keydown', onEscBtnPress);
   document.removeEventListener('click', onBackdropClick);
