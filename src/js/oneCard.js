@@ -20,7 +20,7 @@ export function card(
             class="movie_cover lazyload"
             alt="${title}"
             data-id="${id}"
-            src ="https://kovanya.github.io/project-team-2/no-image_tablet.9d3f7bab.jpg"
+            src ="./images/placeholder/no-image_desktop.jpg"
           />`
             : ''
         }
