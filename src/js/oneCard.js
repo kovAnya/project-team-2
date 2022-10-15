@@ -20,7 +20,7 @@ export function card(
             class="movie_cover lazyload"
             alt="${title}"
             data-id="${id}"
-            src ="../images/placeholder/no-image_desktop.jpg"
+            src ="../../images/placeholder/no-image_desktop.jpg"
           />`
             : ''
         }
