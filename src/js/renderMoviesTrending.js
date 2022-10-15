@@ -1,12 +1,12 @@
 import { fetchMoviesTrending } from './fetchMoviesTrending';
 import { card } from './oneCard';
 import { getMovieGenres } from './genres';
-
+import { bodyElement } from './refs';
 ///////////////Елемент одной карточки в HTML документе
 const moviesElement = document.querySelector('.movies');
 const messageElement = document.querySelector('.info-message');
 ///////////////////////////////////////////////////////
-
+const container = document.getElementById('tui-pagination-container');
 ////////////////Путь и размер запроса картинок + заглушка картинки
 let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
 let fileSize = 'w400';
@@ -96,8 +96,15 @@ export async function renderMoviesTrending(dataFromServer) {
     if (!data || data.length === 0) {
       messageElement.innerHTML =
         "<p class = 'info-message'>You haven't added any movies yet. Please use search to find relevant movies</p>";
+         container.classList.add('visually-hidden');
       return;
-    } else messageElement.innerHTML = '';
+    } else if (data.length < 20) {
+      messageElement.innerHTML = '';
+      container.classList.add('visually-hidden');
+    } if (bodyElement.dataset.page === 'library') {
+      container.classList.add('visually-hidden');
+    };
+    
     saveInLocalStorage(dataFromServer);
 
     data.map(
