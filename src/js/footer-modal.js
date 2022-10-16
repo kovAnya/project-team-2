@@ -1,12 +1,17 @@
 
-import { openModalFooterEl, backdropEl, modalFooterEl, closeModalFooterBtnEl } from "./refs";
+import { openModalFooterEl, backdropEl } from "./refs";
+import { resetMarkup,  getTeamMembers, renderModalAboutTeam} from "./footer-modal-markup";
 
-openModalFooterEl.addEventListener('click', onOpenFooterModal);
-
+openModalFooterEl.addEventListener('click', onCreationAndOpenFooterModal);
 
 function onOpenFooterModal() {
-    toggleBackdrop();
-    onOpenModal(modalFooterEl);
+   // toggleBackdrop();
+  //  onOpenModal(modalFooterEl);
+    const modalFooterEl = document.querySelector('[data-footer-modal]');
+    modalFooterEl.classList.remove('is-hidden');
+    // document.body.style.overflow = 'hidden';
+
+    const closeModalFooterBtnEl = document.querySelector('[data-team-modal-close]');    
     closeModalFooterBtnEl.addEventListener('click', onCloseFooterModal);
     document.addEventListener('click', onCloseFooterModalByBackdrop);
     document.addEventListener("keydown", onCloseFooterModalByEscape);
@@ -14,7 +19,7 @@ function onOpenFooterModal() {
 
 function onCloseFooterModal() {
     toggleBackdrop();
-    onCloseModal(modalFooterEl);
+    onCloseModal();
 }
 
 // Функция появления/исчезания Backdrop
@@ -22,21 +27,30 @@ function toggleBackdrop() {
     backdropEl.classList.toggle('is-hidden');
 } 
 
-// Функция закрытия модалки по клику на елемент
-function onOpenModal(elem) {
-    elem.classList.remove('is-hidden');
+// Функция блокировки скролла на всей странице
+function onStopScroll() {
     document.body.style.overflow = 'hidden';
 }
 
 // Функция закрытия модалки по клику на елемент
-function onCloseModal(elem) {
-    elem.classList.add('is-hidden');
+// function onOpenModal(elem) {
+//     elem.classList.remove('is-hidden');
+//    document.body.style.overflow = 'hidden';
+// }
+
+// Функция закрытия модалки по клику на елемент
+function onCloseModal() {
+    const modalFooterEl = document.querySelector('[data-footer-modal]');  
+    modalFooterEl.classList.add('is-hidden');
     document.body.style.overflow = 'scroll';
-    removeListeners();
+    removeListeners();    
+    resetMarkup();
+
 }
 
 // снятие всех слушателей с модалки 
 function removeListeners() {
+    const closeModalFooterBtnEl = document.querySelector('[data-team-modal-close]');
     closeModalFooterBtnEl.removeEventListener('click', onCloseFooterModal);
     document.removeEventListener('click', onCloseFooterModalByBackdrop);
     document.removeEventListener("keydown", onCloseFooterModalByEscape);
@@ -46,7 +60,7 @@ function removeListeners() {
 function onCloseFooterModalByBackdrop(e) {
     if (e.target === backdropEl) {
         backdropEl.classList.add('is-hidden');
-        onCloseModal(modalFooterEl);
+        onCloseModal();
     }
 }
 
@@ -54,7 +68,14 @@ function onCloseFooterModalByBackdrop(e) {
 function onCloseFooterModalByEscape(e) {
     if (e.code === 'Escape') {
         backdropEl.classList.add('is-hidden');
-        onCloseModal(modalFooterEl);
+        onCloseModal();
     }
 }  
     
+async function onCreationAndOpenFooterModal() {
+    renderModalAboutTeam();
+    toggleBackdrop();
+    onStopScroll();
+    getTeamMembers();
+    setTimeout(onOpenFooterModal, 300);
+}

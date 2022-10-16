@@ -210,15 +210,46 @@ body.modal-open {
   background-color: transparent;
 }
 
-.modal__icon:hover,
-.modal__icon:focus {
-  fill: var(--accent-color);
-}
-
 .modal__link {
   position: absolute;
   bottom: 3px;
   right: 3px;
   width: 20px;
   height: 20px;
+
+  border-radius: 50%;
+  background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  background-image: url(../images/svg/github.svg);
+}
+
+.modal__link:hover,
+.modal__link:focus {
+  background-color: var(--accent-color);
+}
+
+
+.line {
+  display: block;
+  position:absolute;
+  left: 0;
+  height: 12px;
+  width: 2px;
+  background-color: black;
+  left: 50%;
+}
+
+.line-1 {
+  transform: rotate(45deg);
+  top: 5px;
+}
+
+.line-2 {
+  transform: rotate(-45deg);
+  bottom: 6px;
+}
+
+.footer-btn:hover .line {
+  background-color: var(--accent-color);;
 }
