@@ -1,5 +1,6 @@
 import { openWatchedBtn, openQueueBtn, filmsListRef } from './refs';
 import { renderMoviesTrending } from './renderMoviesTrending';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 openWatchedBtn.addEventListener('click', onWatchedBtnClick);
 openQueueBtn.addEventListener('click', onQueueBtnClick);
@@ -33,21 +34,29 @@ function addVotesToCard() {
 
 //get films from me library
 export function FilmsInLocalStorage(category) {
+  
   let dataInLocalStorage = localStorage.getItem(category);
   let parsedDataInLocalStorage = '';
 
   try {
-    return (parsedDataInLocalStorage = JSON.parse(dataInLocalStorage));
+    parsedDataInLocalStorage = JSON.parse(dataInLocalStorage);
+    if (!parsedDataInLocalStorage || parsedDataInLocalStorage.length === 0) {
+      Loading.remove();
+    }
+    return parsedDataInLocalStorage;
   } catch (error) {
     console.warn('Помилка парсингу даних');
   }
 }
+    
 
 //update page in gallery after removing film
 export function onCloseCardBtnClick() {
   if (openQueueBtn.classList.contains('button--accent')) {
     onQueueBtnClick();
+    Loading.remove();
   } else if (openWatchedBtn.classList.contains('button--accent')) {
     onWatchedBtnClick();
+    Loading.remove();
   }
 }

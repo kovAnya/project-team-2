@@ -30,7 +30,7 @@ const refs = {
   signIn: document.querySelector('.signIn_now'),
   signInLink: document.querySelector('.signIn_now__link'),
   logOut: document.querySelector('#header-logOut'),
-  loader: document.querySelector('.loader'),
+  
 };
 export const {
   toTopBtn,
@@ -60,19 +60,12 @@ export const {
   signIn,
   signInLink,
   logOut,
-  loader,
+  
 } = refs;
 
 // До футера
-export const openModalFooterEl = document.querySelector(
-  '[data-team-modal-open]'
-);
+export const openModalFooterEl = document.querySelector('[data-team-modal-open]');
 export const backdropEl = document.querySelector('.backdrop');
-
-export const modalFooterEl = document.querySelector('[data-footer-modal]');
-export const closeModalFooterBtnEl = document.querySelector(
-  '[data-team-modal-close]'
-);
 
 // До бібліотеки
 export const openWatchedBtn = document.querySelector('.js-watched');
