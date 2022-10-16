@@ -30,7 +30,6 @@ const refs = {
   signIn: document.querySelector('.signIn_now'),
   signInLink: document.querySelector('.signIn_now__link'),
   logOut: document.querySelector('#header-logOut'),
-  
 };
 export const {
   toTopBtn,
@@ -60,11 +59,12 @@ export const {
   signIn,
   signInLink,
   logOut,
-  
 } = refs;
 
 // До футера
-export const openModalFooterEl = document.querySelector('[data-team-modal-open]');
+export const openModalFooterEl = document.querySelector(
+  '[data-team-modal-open]'
+);
 export const backdropEl = document.querySelector('.backdrop');
 
 // До бібліотеки
@@ -79,3 +79,4 @@ export const bodyElement = document.querySelector('body');
 export const filmsListRef = document.querySelector('.movies');
 export const closeBtnRef = document.querySelector('.closeModal');
 export const modalFilm = document.querySelector('.modal__container');
+export const container = document.getElementById('tui-pagination-container');
