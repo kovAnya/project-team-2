@@ -1,7 +1,7 @@
 import { fetchMoviesTrending } from './fetchMoviesTrending';
 import { card } from './oneCard';
 import { getMovieGenres } from './genres';
-
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 ///////////////Елемент одной карточки в HTML документе
 const moviesElement = document.querySelector('.movies');
 const messageElement = document.querySelector('.info-message');
@@ -91,6 +91,11 @@ export async function saveInLocalStorage(dataFromServer) {
 
 ///////////////Функция рендеринга 1 карточки фильма
 export async function renderMoviesTrending(dataFromServer) {
+   Loading.hourglass({
+            svgColor: "rgb(255, 106, 0)",
+            backgroundColor: "rgba(0,0,0,0)", 
+             
+        });
   try {
     let data = await dataFromServer; ////Массив с 20 фильмами
     if (!data || data.length === 0) {
@@ -139,5 +144,7 @@ export async function renderMoviesTrending(dataFromServer) {
     );
   } catch (error) {
     console.log(error);
+    
   }
+  Loading.remove();
 }
