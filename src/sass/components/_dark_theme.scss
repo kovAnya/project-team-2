@@ -1,7 +1,5 @@
 // Тёмная тема спиннера
 
-
-
 /* Стиль кнопки (перемикача)*/
 .change_theme {
   border: 1px solid white;
@@ -32,7 +30,6 @@ body {
   color: white;
 }
 
-
 .loader.loader-black {
   background-color: #222222;
 }
@@ -40,7 +37,7 @@ body {
 /*Модальне вікно фільмів при dark theme*/
 .modal__container {
   background-color: #1a1818;
-  .image{
+  .image {
     box-shadow: 1px -1px 15px -3px #f8ececbf;
   }
   .film__title {
@@ -62,27 +59,29 @@ body {
   .film__details ~ p {
     color: #8c8c8c;
   }
-  .modal__close-btn{
+  .modal__close-btn {
     fill: #8c8c8c;
     background-color: #1a1818;
     border-color: #8c8c8c;
-      &:hover,
-      &:focus {
-        fill: #ff6b08;
-        border-color: #ff6b08;
-      }
-}
+    &:hover,
+    &:focus {
+      fill: #ff6b08;
+      border-color: #ff6b08;
+    }
+  }
   .closeModal::before,
   .closeModal::after {
     background-color: #ffffff;
   }
 }
-
 .footer {
   background-color: #1a1818;
 }
 
 .footer__modal {
   background-color: #1a1818;
+  }
+
+.info-message {
   color: #8c8c8c;
 }
