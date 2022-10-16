@@ -5,8 +5,8 @@ import './js/pagination';
 import './js/watchedLib';
 import './js/modal_film';
 import './js/themeSwitcher';
-import './js/spinner';
 import './js/scroll';
 import './js/footer-modal';
 import './js/footer-modal-markup';
 start();
+
