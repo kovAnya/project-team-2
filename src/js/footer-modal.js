@@ -1,6 +1,6 @@
 
 import { openModalFooterEl, backdropEl } from "./refs";
-import { resetMarkup,  getTeamMembers, renderModalAboutTeam, changeFooterModalTheme } from "./footer-modal-markup";
+import { resetMarkup,  getTeamMembers, renderModalAboutTeam } from "./footer-modal-markup";
 
 openModalFooterEl.addEventListener('click', onCreationAndOpenFooterModal);
 
@@ -76,7 +76,7 @@ async function onCreationAndOpenFooterModal() {
     renderModalAboutTeam();
     toggleBackdrop();
     onStopScroll();
-    changeFooterModalTheme();
+ //   changeFooterModalTheme();
     getTeamMembers();
     setTimeout(onOpenFooterModal, 300);
 }
