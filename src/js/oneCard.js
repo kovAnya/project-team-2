@@ -20,7 +20,7 @@ export function card(
             class="movie_cover lazyload"
             alt="${title}"
             data-id="${id}"   
-            scr = "https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp"
+            srс = "https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp"
           />`
             : ''
         }
