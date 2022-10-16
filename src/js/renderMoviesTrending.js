@@ -94,25 +94,30 @@ export async function saveInLocalStorage(dataFromServer) {
 ///////////////Функция рендеринга 1 карточки фильма
 export async function renderMoviesTrending(dataFromServer) {
   Loading.hourglass({
-            svgColor: "rgb(255, 106, 0)",
-            backgroundColor: "rgba(0,0,0,0)", 
-             
-        });
+    svgColor: 'rgb(255, 106, 0)',
+    backgroundColor: 'rgba(0,0,0,0)',
+  });
   try {
     let data = await dataFromServer; ////Массив с 20 фильмами
     if (!data || data.length === 0) {
       messageElement.innerHTML =
         "<p class = 'info-message'>You haven't added any movies yet. Please use search to find relevant movies</p>";
-      container.classList.add('visually-hidden');
       Loading.remove();
       return;
-    } else if (data.length < 20) {
+    } else {
       messageElement.innerHTML = '';
+    }
+
+    if (!data || data.length === 0) {
       container.classList.add('visually-hidden');
-    } if (bodyElement.dataset.page === 'library') {
+    } else if (data.length < 20) {
       container.classList.add('visually-hidden');
-    };
-    
+    }
+
+    if (bodyElement.dataset.page === 'library') {
+      container.classList.add('visually-hidden');
+    }
+
     saveInLocalStorage(dataFromServer);
 
     data.map(

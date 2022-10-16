@@ -7,15 +7,11 @@ import Notiflix from 'notiflix';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 const axios = require('axios').default;
 
-
-
-
 import { renderMoviesTrending } from './renderMoviesTrending';
 
 const searchFilmForm = document.querySelector('.header__form');
 const searchFilmInput = document.querySelector('.header__form-input');
 const moviesElement = document.querySelector('.movies');
-
 
 let inputValue = '';
 let searchFilms = true;
@@ -30,7 +26,7 @@ export async function fetchFilms(page) {
     if (page === 1) {
       pagination.reset(fetchResult.data.total_results);
     }
-    
+
     return fetchResult.data.results;
   } catch (error) {
     console.error(error);
@@ -42,31 +38,25 @@ async function searchFilm(e) {
 
   inputValue = searchFilmInput.value;
   if (inputValue === '') {
-      Notiflix.Notify.failure(
-                'Enter the correct movie name and try again.'
-      );
+    Notiflix.Notify.failure('Enter the correct movie name and try again.');
     return;
   }
- 
+
   searchFilmForm.reset();
-  moviesElement.innerHTML = '';
   try {
-     answer = await (fetchFilms(page));
-   
+    answer = await fetchFilms(page);
+
     if (answer.length === 0) {
       Loading.remove();
-        Notiflix.Notify.failure(
-          'Search result not successful. Enter the correct movie name and try again.'
-          
+      Notiflix.Notify.failure(
+        'Search result not successful. Enter the correct movie name and try again.'
       );
       return;
-          }
+    }
+    moviesElement.innerHTML = '';
     await renderMoviesTrending(answer);
-  } catch (error) {
-   
-  }
+  } catch (error) {}
 }
-
 
 pagination.on('afterMove', event => {
   const currentPage = event.page;
@@ -81,5 +71,3 @@ pagination.on('afterMove', event => {
 });
 
 searchFilmForm.addEventListener('submit', searchFilm);
-
-
