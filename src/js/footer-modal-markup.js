@@ -66,3 +66,11 @@ export function getTeamMembers() {
 }
 
 saveTeamMembers();
+
+// export function changeFooterModalTheme() {
+//      if (localStorageUs.load('theme') === 'onDark') {
+//          const footerModalEl = document.querySelector('.footer__modal');
+//          footerModalEl.classList.add('dark-theme');
+//      }
+//     return;
+// }
