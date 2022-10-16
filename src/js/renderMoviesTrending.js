@@ -1,14 +1,12 @@
-import { fetchMoviesTrending } from './fetchMoviesTrending';
 import { card } from './oneCard';
 import { getMovieGenres } from './genres';
-import { bodyElement } from './refs';
+import { container } from './refs';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 ///////////////Елемент одной карточки в HTML документе
 const moviesElement = document.querySelector('.movies');
 const messageElement = document.querySelector('.info-message');
-///////////////////////////////////////////////////////
-const container = document.getElementById('tui-pagination-container');
+
 ////////////////Путь и размер запроса картинок + заглушка картинки
 let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
 let fileSize = 'w400';
@@ -111,10 +109,6 @@ export async function renderMoviesTrending(dataFromServer) {
     if (!data || data.length === 0) {
       container.classList.add('visually-hidden');
     } else if (data.length < 20) {
-      container.classList.add('visually-hidden');
-    }
-
-    if (bodyElement.dataset.page === 'library') {
       container.classList.add('visually-hidden');
     }
 
