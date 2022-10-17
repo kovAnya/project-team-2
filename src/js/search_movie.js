@@ -1,6 +1,6 @@
 import { ApiKey, page } from './refs';
 import { pagination } from './pagination';
-import { fetchMoviesTrending } from './fetchMoviesTrending';
+import { fetchMoviesTrending } from './API/fetchMoviesTrending';
 import { onScroll, onToTopBtn } from './scroll';
 import { renderMoviesTrending } from './renderMoviesTrending';
 import Notiflix from 'notiflix';

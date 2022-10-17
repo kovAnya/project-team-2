@@ -1,6 +1,6 @@
 import { card } from './oneCard';
-import { getMovieGenres } from './genres';
-import { container } from './refs';
+import { getMovieGenres } from './API/genres';
+import { container, BASE_URL_IMAGE } from './refs';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 ///////////////Елемент одной карточки в HTML документе
@@ -8,7 +8,6 @@ const moviesElement = document.querySelector('.movies');
 const messageElement = document.querySelector('.info-message');
 
 ////////////////Путь и размер запроса картинок + заглушка картинки
-let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
 let fileSize = 'w400';
 
 let stubPicture =

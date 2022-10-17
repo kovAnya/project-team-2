@@ -14,11 +14,6 @@ import { addLocal } from './add_local_storage';
 import { backdropEl, filmsListRef, closeBtnRef, modalFilm } from './refs';
 import { onCloseCardBtnClick, FilmsInLocalStorage } from './watchedLib';
 
-let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
-let fileSize = 'w400';
-let stubPicture =
-  'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp';
-
 ////////////////////////////////Получаем данные с Локального Хранилища
 let watchedStorageLength = 0;
 let queueStorageLength = 0;

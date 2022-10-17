@@ -1,6 +1,10 @@
 export const ApiKey = '3ec430a354e7116e3d9f9a41b82b2275';
 export let page = 1;
+export let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
+export const BASE_URL_TO_QUERY_GENRES =
+  'https://api.themoviedb.org/3/genre/movie/list?api_key=';
 
+export const LOCAL_KEY_GENRES = 'genresOfFilms';
 // До авторизації
 const refs = {
   toTopBtn: document.querySelector('.btn-to-top'),
