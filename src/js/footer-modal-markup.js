@@ -1,15 +1,17 @@
 import { backdropEl } from './refs';
-import { localStorageUs } from "./localStorage";
-import { teamMembers } from "./team-members";
+import { localStorageUs } from './localStorage';
+import { teamMembers } from './team-members';
 
 const LOCAL_KEY_FOR_TEAM_MODAL = 'teamMembers';
 
-const IMG_LINK = 'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/team';
+const IMG_LINK =
+  'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/team';
 
 // создаем разметку контейнера модалки
 export function renderModalAboutTeam() {
-    backdropEl.insertAdjacentHTML('afterbegin',
-        ` <div class="footer__modal is-hidden" data-footer-modal>
+  backdropEl.insertAdjacentHTML(
+    'afterbegin',
+    ` <div class="footer__modal is-hidden" data-footer-modal>
     <button class="modal__close-btn footer-btn" type="button" aria-label="Сlose modal" data-team-modal-close>
      
       <span class="line line-1"></span>
@@ -20,14 +22,17 @@ export function renderModalAboutTeam() {
     <h2 class="visually-hidden">Our Team</h2>
     <ul class="modal__list"></ul>
     </div>
-    </div>`);
+    </div>`
+  );
 }
 
 // Создаем разметку карточки члена команды
 function renderMarkupOfTeamCards(items) {
-    const modalList = document.querySelector('.modal__list');
-    const markup = items.map(({ link, name, position, img_jpg, img_webp }) => 
-            `<li class="modal__item">
+  const modalList = document.querySelector('.modal__list');
+  const markup = items
+    .map(
+      ({ link, name, position, img_jpg, img_webp }) =>
+        `<li class="modal__item">
                 <div class="modal__img">
                    
                 <picture>
@@ -46,8 +51,10 @@ function renderMarkupOfTeamCards(items) {
                 <p  class="modal__text">${name}</p>
                 <p class="modal__text--position">${position}</p>                    
                 </div>
-            </li>`).join('');
-    modalList.insertAdjacentHTML('afterbegin', markup);
+            </li>`
+    )
+    .join('');
+  modalList.insertAdjacentHTML('afterbegin', markup);
 }
 
 // Удаление разметки
@@ -58,19 +65,11 @@ export function resetMarkup() {
 
 // Функции для работы с локальным хранилищем для Модалки про команду
 function saveTeamMembers() {
-    localStorageUs.save(LOCAL_KEY_FOR_TEAM_MODAL, teamMembers);  
+  localStorageUs.save(LOCAL_KEY_FOR_TEAM_MODAL, teamMembers);
 }
 
 export function getTeamMembers() {
-    renderMarkupOfTeamCards(localStorageUs.load(LOCAL_KEY_FOR_TEAM_MODAL));
+  renderMarkupOfTeamCards(localStorageUs.load(LOCAL_KEY_FOR_TEAM_MODAL));
 }
 
 saveTeamMembers();
-
-// export function changeFooterModalTheme() {
-//      if (localStorageUs.load('theme') === 'onDark') {
-//          const footerModalEl = document.querySelector('.footer__modal');
-//          footerModalEl.classList.add('dark-theme');
-//      }
-//     return;
-// }

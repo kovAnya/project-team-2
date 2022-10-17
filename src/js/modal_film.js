@@ -1,38 +1,18 @@
-import { fetchMoviesTrending } from './fetchMoviesTrending';
-import { getMovieGenres } from './genres';
 import {
-  btnColorWatch,
-  btnColorQueue,
   searchLocalQueue,
   searchLocalWatch,
   classListWatch,
   classListQueue,
 } from './add_local_storage';
-import { searchLocal } from './add_local_storage';
 import {
-  renderMoviesTrending,
-  processingReleasedYear,
   processingGenre,
   processingNameFilm,
   processingPoster,
   processingVoteAverage,
 } from './renderMoviesTrending';
-// import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
 import { addLocal } from './add_local_storage';
-import {
-  backdropEl,
-  filmsListRef,
-  closeBtnRef,
-  modalFilm,
-  openWatchedBtn,
-  openQueueBtn,
-} from './refs';
-import { onCloseCardBtnClick, FilmsInLocalStorage } from './watchedLib';
-
-let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';
-let fileSize = 'w400';
-let stubPicture =
-  'https://raw.githubusercontent.com/kovAnya/project-team-2/main/src/images/placeholder/no-image_desktop.webp';
+import { backdropEl, filmsListRef, closeBtnRef, modalFilm } from './refs';
+import { onCloseCardBtnClick, FilmsInLocalStorage } from './usersLib';
 
 ////////////////////////////////Получаем данные с Локального Хранилища
 let watchedStorageLength = 0;

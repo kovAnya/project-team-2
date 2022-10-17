@@ -1,12 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import {
-  getDatabase,
-  set,
-  ref,
-  onValue,
-  update,
-  remove,
-} from 'firebase/database';
+import { getDatabase, set, ref, update } from 'firebase/database';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -32,7 +25,7 @@ import {
   signInLink,
   logOut,
 } from './refs';
-import { closeModalLogIn } from './modal-log-in';
+import { closeModalLogIn } from './modal-auth';
 import Notiflix from 'notiflix';
 import { chooseThemeForNotiflix } from './notiflix';
 
@@ -68,8 +61,6 @@ if (formLogIn) {
   formLogIn.addEventListener('submit', onLogin);
 }
 
-// location.href = 'library.html';
-
 if (formCheckbox) {
   formCheckbox.onchange = function () {
     if (this.checked) {
@@ -92,9 +83,7 @@ if (signIn) {
 onAuthStateChanged(auth, user => {
   if (user) {
     // User is signed in
-    // console.log(auth.currentUser);
     const uid = user.uid;
-    // console.log(uid);
     onUserLogIn();
   } else {
     // User is signed out
@@ -117,7 +106,6 @@ function onRegister(event) {
   }
   createUserWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      // console.log(userCredential);
       // Registered;
       const user = userCredential.user;
       set(ref(database, 'users/' + user.uid), {
@@ -133,9 +121,6 @@ function onRegister(event) {
       );
     })
     .catch(error => {
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // alert(errorMessage);
       Notiflix.Report.warning(
         'Wait a second',
         'User with such email already exists, maybe it`s you?',
@@ -159,8 +144,6 @@ function onLogin(event) {
   }
   signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      // console.log(userCredential);
-      // Signed in;
       const user = userCredential.user;
       const dt = new Date();
       update(ref(database, 'users/' + user.uid), {
@@ -176,9 +159,6 @@ function onLogin(event) {
       );
     })
     .catch(error => {
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // alert(errorMessage);
       Notiflix.Report.warning(
         'Hmm',
         'Something wrong with your reqwest, please try again',
@@ -198,9 +178,6 @@ if (logOut) {
       'What I`m doing? I should stay',
       function okCb() {
         signOut(auth).catch(error => {
-          // const errorCode = error.code;
-          // const errorMessage = error.message;
-          // alert(errorMessage);
           Notiflix.Report.warning(
             'Hah',
             'Did you think you would escape so easily? Have one more try 😁',

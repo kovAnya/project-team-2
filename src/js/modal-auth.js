@@ -11,7 +11,7 @@ import {
   iconForShowPassword,
   iconForUnShowPassword,
 } from './refs';
-import { goToSignIn } from './log-in';
+import { goToSignIn } from './auth';
 import { chooseThemeForNotiflix } from './notiflix';
 
 if (openModalBtn) {

@@ -1,9 +1,4 @@
-import { ApiKey } from './refs';
-
-const BASE_URL_TO_QUERY_GENRES =
-  'https://api.themoviedb.org/3/genre/movie/list?api_key=';
-
-const LOCAL_KEY_GENRES = 'genresOfFilms';
+import { ApiKey, BASE_URL_TO_QUERY_GENRES, LOCAL_KEY_GENRES } from '../refs';
 
 // Запрос жанров
 async function fetchGenres() {

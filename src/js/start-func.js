@@ -1,10 +1,10 @@
-import { saveMovieGenresInStorage } from './genres';
+import { saveMovieGenresInStorage } from './API/genres';
 import { renderMoviesTrending } from './renderMoviesTrending';
-import { fetchMoviesTrending } from './fetchMoviesTrending';
+import { fetchMoviesTrending } from './API/fetchMoviesTrending';
 import { page, bodyElement, container } from './refs';
 
 export async function start() {
-  const genresStepFirst = await saveMovieGenresInStorage();
+  await saveMovieGenresInStorage();
   function renderPage(bodyElement) {
     if (bodyElement.dataset.page === 'index') {
       renderMoviesTrending(fetchMoviesTrending(page));

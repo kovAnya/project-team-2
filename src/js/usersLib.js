@@ -10,19 +10,21 @@ if (filmsListRef.dataset.library === 'library') {
 }
 
 export async function onWatchedBtnClick() {
-  filmsListRef.innerHTML = '';
-  openWatchedBtn.classList.add('button--accent');
-  openQueueBtn.classList.remove('button--accent');
+  addButtonAccent(openWatchedBtn, openQueueBtn);
   await renderMoviesTrending(FilmsInLocalStorage('Watched'));
   addVotesToCard();
 }
 
 export async function onQueueBtnClick() {
-  filmsListRef.innerHTML = '';
-  openQueueBtn.classList.add('button--accent');
-  openWatchedBtn.classList.remove('button--accent');
+  addButtonAccent(openQueueBtn, openWatchedBtn);
   await renderMoviesTrending(FilmsInLocalStorage('Queue'));
   addVotesToCard();
+}
+
+function addButtonAccent(accentBtn, notAccentBtn) {
+  filmsListRef.innerHTML = '';
+  accentBtn.classList.add('button--accent');
+  notAccentBtn.classList.remove('button--accent');
 }
 
 function addVotesToCard() {
@@ -34,7 +36,6 @@ function addVotesToCard() {
 
 //get films from me library
 export function FilmsInLocalStorage(category) {
-  
   let dataInLocalStorage = localStorage.getItem(category);
   let parsedDataInLocalStorage = '';
 
@@ -48,7 +49,6 @@ export function FilmsInLocalStorage(category) {
     console.warn('Помилка парсингу даних');
   }
 }
-    
 
 //update page in gallery after removing film
 export function onCloseCardBtnClick() {
