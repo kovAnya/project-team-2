@@ -29,7 +29,6 @@ async function searchFilm(e) {
   searchFilmForm.reset();
   try {
     answer = await fetchFilms(inputValue, page);
-
     if (answer.length === 0) {
       Loading.remove();
       Notiflix.Notify.failure(
@@ -37,6 +36,7 @@ async function searchFilm(e) {
       );
       return;
     }
+    searchFilms = false;
     moviesElement.innerHTML = '';
     await renderMoviesTrending(answer);
   } catch (error) {}
@@ -48,7 +48,7 @@ pagination.on('afterMove', event => {
   if (searchFilms) {
     renderMoviesTrending(fetchMoviesTrending(currentPage));
   } else {
-    renderMoviesTrending(fetchFilms(currentPage));
+    renderMoviesTrending(fetchFilms(inputValue, currentPage));
   }
   onScroll();
   onToTopBtn();
