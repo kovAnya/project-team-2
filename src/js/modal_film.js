@@ -1,32 +1,17 @@
-import { fetchMoviesTrending } from './fetchMoviesTrending';
-import { getMovieGenres } from './genres';
 import {
-  btnColorWatch,
-  btnColorQueue,
   searchLocalQueue,
   searchLocalWatch,
   classListWatch,
   classListQueue,
 } from './add_local_storage';
-import { searchLocal } from './add_local_storage';
 import {
-  renderMoviesTrending,
-  processingReleasedYear,
   processingGenre,
   processingNameFilm,
   processingPoster,
   processingVoteAverage,
 } from './renderMoviesTrending';
-// import { onWatchedBtnClick, onQueueBtnClick } from './add_local_storage';
 import { addLocal } from './add_local_storage';
-import {
-  backdropEl,
-  filmsListRef,
-  closeBtnRef,
-  modalFilm,
-  openWatchedBtn,
-  openQueueBtn,
-} from './refs';
+import { backdropEl, filmsListRef, closeBtnRef, modalFilm } from './refs';
 import { onCloseCardBtnClick, FilmsInLocalStorage } from './watchedLib';
 
 let BASE_URL_IMAGE = 'https://image.tmdb.org/t/p';

@@ -4,7 +4,7 @@ import { fetchMoviesTrending } from './fetchMoviesTrending';
 import { page, bodyElement, container } from './refs';
 
 export async function start() {
-  const genresStepFirst = await saveMovieGenresInStorage();
+  await saveMovieGenresInStorage();
   function renderPage(bodyElement) {
     if (bodyElement.dataset.page === 'index') {
       renderMoviesTrending(fetchMoviesTrending(page));

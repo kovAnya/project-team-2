@@ -51,7 +51,6 @@ function createModal(event) {
       saveLs('moviesData', moviesData);
     }
     //Получение данных о фильме в модалку
-    // const selectedMovieId = Number(selectedMovie.getAttribute('key'));
     const movieData = moviesData.find(movie => movie.id === selectedMovieId);
     renderModalContent(movieData);
     openModal();
@@ -154,7 +153,6 @@ function updataLibery(e, btn, list) {
   if (dataWebLocation === 'library') {
     lib.innerHTML = '';
     libMarkup(list);
-    // btn.setAttribute('disabled', true);
   }
   return;
 }
@@ -220,7 +218,6 @@ function offModal() {
 }
 
 // модалка команды
-
 const modalCloseBtn = `
 <button class="modal__btn-closs btn__closs-modal">
       <svg

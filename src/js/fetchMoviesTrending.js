@@ -3,7 +3,6 @@ import { pagination } from './pagination';
 import { ApiKey } from './refs';
 
 const URL = 'https://api.themoviedb.org/3/trending';
-const moviesElement = document.querySelector('.movies');
 
 let mediaType = 'all';
 let timeWindow = 'day';

@@ -52,7 +52,7 @@ export function deleteLocalQueue(obj) {
   const checkWatch = localStorage.getItem(QUEUE_KEY);
   const checkkk = JSON.parse(checkWatch);
   const filmQueue = checkkk.filter(array => {
-    return array.id != obj.id;
+    return array.id !== obj.id;
   });
   localStorage.setItem(QUEUE_KEY, JSON.stringify(filmQueue));
 }
