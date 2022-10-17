@@ -1,11 +1,11 @@
-import { ApiKey, page } from './refs';
+import { page } from './refs';
 import { pagination } from './pagination';
 import { fetchMoviesTrending } from './API/fetchMoviesTrending';
+import { fetchFilms } from './API/fetchSearchMovie';
 import { onScroll, onToTopBtn } from './scroll';
 import { renderMoviesTrending } from './renderMoviesTrending';
 import Notiflix from 'notiflix';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
-const axios = require('axios').default;
 
 import { renderMoviesTrending } from './renderMoviesTrending';
 
@@ -16,22 +16,6 @@ const moviesElement = document.querySelector('.movies');
 let inputValue = '';
 let searchFilms = true;
 let answer = null;
-
-export async function fetchFilms(page) {
-  try {
-    const fetchResult = await axios.get(
-      `https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&language=en-US&query=${inputValue}&page=${page}&include_adult=false`
-    );
-    searchFilms = false;
-    if (page === 1) {
-      pagination.reset(fetchResult.data.total_results);
-    }
-
-    return fetchResult.data.results;
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 async function searchFilm(e) {
   e.preventDefault();
@@ -44,7 +28,7 @@ async function searchFilm(e) {
 
   searchFilmForm.reset();
   try {
-    answer = await fetchFilms(page);
+    answer = await fetchFilms(inputValue, page);
 
     if (answer.length === 0) {
       Loading.remove();

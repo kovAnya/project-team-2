@@ -25,7 +25,7 @@ import {
   signInLink,
   logOut,
 } from './refs';
-import { closeModalLogIn } from './modal-log-in';
+import { closeModalLogIn } from './modal-auth';
 import Notiflix from 'notiflix';
 import { chooseThemeForNotiflix } from './notiflix';
 

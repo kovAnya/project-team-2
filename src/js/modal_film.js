@@ -12,7 +12,7 @@ import {
 } from './renderMoviesTrending';
 import { addLocal } from './add_local_storage';
 import { backdropEl, filmsListRef, closeBtnRef, modalFilm } from './refs';
-import { onCloseCardBtnClick, FilmsInLocalStorage } from './watchedLib';
+import { onCloseCardBtnClick, FilmsInLocalStorage } from './usersLib';
 
 ////////////////////////////////Получаем данные с Локального Хранилища
 let watchedStorageLength = 0;

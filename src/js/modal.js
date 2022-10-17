@@ -14,7 +14,7 @@ import { libMarkup } from './lib';
 import team from './team-info';
 import { trailerBtnListener } from './trailer';
 
-import { auth } from './log-in';
+import { auth } from './auth';
 import Notiflix from 'notiflix';
 import { chooseThemeForNotiflix } from './notiflix';
 
