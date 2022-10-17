@@ -116,7 +116,6 @@ a {
   }
 }
 
-
 .btn-to-top--dark {
   background-color: orange;
   &:hover {
@@ -126,5 +125,12 @@ a {
 .info-message {
   font-size: 16px;
   text-align: center;
-
+}
+.lazyload,
+.lazyloading {
+  opacity: 0;
+}
+.lazyloaded {
+  opacity: 1;
+  transition: opacity 300ms;
 }
