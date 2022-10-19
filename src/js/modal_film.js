@@ -67,6 +67,7 @@ function onFilmCardClick(e) {
   let popularity = changeFilm.popularity;
   let genre_ids = processingGenre(changeFilm.genre_ids);
   let overview = changeFilm.overview;
+  let btn_search = '';
 
   modalFilm.insertAdjacentHTML(
     'afterbegin',
@@ -77,7 +78,8 @@ function onFilmCardClick(e) {
       vote_count,
       popularity,
       genre_ids,
-      overview
+      overview,
+      btn_search
     )
   );
 
@@ -98,14 +100,15 @@ function onFilmCardClick(e) {
   });
 }
 
-function makeFilmModalMarkup(
+export function makeFilmModalMarkup(
   poster_path,
   title,
   vote_average,
   vote_count,
   popularity,
   genre_ids,
-  overview
+  overview,
+  btn_search
 ) {
   return `
   <div class="film__image">
@@ -156,7 +159,8 @@ function makeFilmModalMarkup(
       <div class="film__button__wrapper">
         <button type="button" class="film__button btn__watch btn__watch__remove">Add to watched</button>
         <button type="button" class="film__button btn__queue btn__queue__remove">Add to queue</button>
-      </div>
+       ${btn_search}
+        </div>
       </div>`;
 }
 
