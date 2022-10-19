@@ -34,6 +34,7 @@ const refs = {
   signIn: document.querySelector('.signIn_now'),
   signInLink: document.querySelector('.signIn_now__link'),
   logOut: document.querySelector('#header-logOut'),
+  playSomething: document.querySelector('.header-playsomething'),
 };
 export const {
   toTopBtn,
@@ -63,6 +64,7 @@ export const {
   signIn,
   signInLink,
   logOut,
+  playSomething,
 } = refs;
 
 // До футера
