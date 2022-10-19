@@ -157,7 +157,7 @@
   border: 1px solid #ff6b08;
 }
 
-.film__button:first-child {
+.film__button:not(:last-child) {
   margin-right: 15px;
 }
 

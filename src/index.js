@@ -8,4 +8,5 @@ import './js/themeSwitcher';
 import './js/scroll';
 import './js/footer-modal';
 import './js/footer-modal-markup';
+import './js/playSomething';
 start();
