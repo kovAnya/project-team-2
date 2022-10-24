@@ -1,4 +1,4 @@
-import { page } from './refs';
+import { page, cardListSearch } from './refs';
 import { pagination } from './pagination';
 import { fetchMoviesTrending } from './API/fetchMoviesTrending';
 import { fetchFilms } from './API/fetchSearchMovie';
@@ -6,6 +6,8 @@ import { onScroll, onToTopBtn } from './scroll';
 import { renderMoviesTrending } from './renderMoviesTrending';
 import Notiflix from 'notiflix';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import debounce from 'lodash.debounce';
+import { liveSearch } from './liveSearch';
 
 import { renderMoviesTrending } from './renderMoviesTrending';
 
@@ -21,11 +23,11 @@ async function searchFilm(e) {
   e.preventDefault();
 
   inputValue = searchFilmInput.value;
+  cardListSearch.classList.add('is-hidden');
   if (inputValue === '') {
     Notiflix.Notify.failure('Enter the correct movie name and try again.');
     return;
   }
-
   searchFilmForm.reset();
   try {
     answer = await fetchFilms(inputValue, page);
@@ -54,4 +56,19 @@ pagination.on('afterMove', event => {
   onToTopBtn();
 });
 
+function debouceFunct() {
+  inputValue = handleKeyPress();
+  if (inputValue !== '') {
+    cardListSearch.innerHTML = '';
+    liveSearch(inputValue);
+  } else {
+    cardListSearch.classList.add('is-hidden');
+  }
+}
+
+const handleKeyPress = event => {
+  return searchFilmInput.value.trim();
+};
+
+searchFilmForm.addEventListener('input', debounce(debouceFunct, 500));
 searchFilmForm.addEventListener('submit', searchFilm);
