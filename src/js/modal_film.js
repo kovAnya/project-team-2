@@ -192,7 +192,7 @@ function onEscBtnPress(e) {
 }
 
 //Функція закриття модалки поза межами модалки
-function onBackdropClick(e) {
+export function onBackdropClick(e) {
   if (e.target === backdropEl) {
     onCloseBtnClick();
   }
