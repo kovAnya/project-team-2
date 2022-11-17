@@ -185,7 +185,7 @@ function onCloseBtnClick() {
 }
 
 //Функція закриття по ESC
-function onEscBtnPress(e) {
+export function onEscBtnPress(e) {
   if (e.code === 'Escape') {
     onCloseBtnClick();
   }
