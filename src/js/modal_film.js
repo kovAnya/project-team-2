@@ -56,7 +56,6 @@ function onFilmCardClick(e) {
   /////Данные с Локального хранилища
   let dataLocalStorage = dataInLocalStorage();
 
-  // console.log(dataLocalStorage);
   let changeFilm = dataLocalStorage.find(film => film.id === idImageNumber);
 
   ///////////////Переменные для отрисовки Модалки
