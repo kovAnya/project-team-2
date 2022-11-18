@@ -87,6 +87,9 @@ export function searchLocalWatch(obj, btnWatch) {
   try {
     const checkWatch = localStorage.getItem(WATCH_KEY);
     const checkkk = JSON.parse(checkWatch);
+    if (!checkkk) {
+      return;
+    }
     const filmWatched = checkkk.find(array => array.id === obj.id);
     if (filmWatched) {
       btnWatch.classList.remove('btn__watch');
@@ -103,6 +106,9 @@ export function searchLocalQueue(obj, btnQueue) {
   try {
     const checkQueue = localStorage.getItem(QUEUE_KEY);
     const checkkk = JSON.parse(checkQueue);
+    if (!checkkk) {
+      return;
+    }
     const filmQueue = checkkk.find(array => array.id === obj.id);
     if (filmQueue) {
       btnQueue.classList.add('active');

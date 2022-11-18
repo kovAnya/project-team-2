@@ -23,7 +23,7 @@ const searchFilmInput = document.querySelector('.header__form-input');
 searchFilmInput.addEventListener('input', liveSearch(searchFilmInput.value));
 
 export async function liveSearch(inputValue) {
-  let searchTopList = null;
+  let searchTopList = [];
   if (inputValue.length > 2) {
     cardListSearch.classList.remove('is-hidden');
     searchTopList = await fetchFilms(inputValue, page);
@@ -35,7 +35,7 @@ export async function liveSearch(inputValue) {
   }
 
   function clickModal(e) {
-    if (searchTopList) {
+    if (searchTopList.length > 0) {
       let clickMovie = searchTopList.find(list => list.id == e.target.id);
 
       if (document.querySelector('.film__image') !== null) {
@@ -88,6 +88,7 @@ export async function liveSearch(inputValue) {
       });
       cardListSearch.innerHTML = '';
       cardListSearch.classList.add('is-hidden');
+      cardListSearch.removeEventListener('click', clickModal);
     }
   }
 
