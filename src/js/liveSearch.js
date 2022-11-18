@@ -47,12 +47,12 @@ export async function liveSearch(inputValue) {
     if (searchTopList) {
       let clickMovie = searchTopList.find(list => list.id == e.target.id);
 
-      if (localStorage.getItem('Watched')) {
-        watchedStorageLength = FilmsInLocalStorage('Watched').length;
-      }
-      if (localStorage.getItem('Queue')) {
-        queueStorageLength = FilmsInLocalStorage('Queue').length;
-      }
+//       if (localStorage.getItem('Watched')) {
+//         watchedStorageLength = FilmsInLocalStorage('Watched').length;
+//       }
+//       if (localStorage.getItem('Queue')) {
+//         queueStorageLength = FilmsInLocalStorage('Queue').length;
+//       }
 
       if (document.querySelector('.film__image') !== null) {
         document.querySelector('.film__image').remove();
