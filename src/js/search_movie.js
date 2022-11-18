@@ -1,4 +1,10 @@
-import { page, cardListSearch } from './refs';
+import {
+  page,
+  cardListSearch,
+  searchFilmForm,
+  searchFilmInput,
+  moviesElement,
+} from './refs';
 import { pagination } from './pagination';
 import { fetchMoviesTrending } from './API/fetchMoviesTrending';
 import { fetchFilms } from './API/fetchSearchMovie';
@@ -10,10 +16,6 @@ import debounce from 'lodash.debounce';
 import { liveSearch } from './liveSearch';
 
 import { renderMoviesTrending } from './renderMoviesTrending';
-
-const searchFilmForm = document.querySelector('.header__form');
-const searchFilmInput = document.querySelector('.header__form-input');
-const moviesElement = document.querySelector('.movies');
 
 let inputValue = '';
 let searchFilms = true;

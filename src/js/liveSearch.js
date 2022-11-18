@@ -17,9 +17,16 @@ import {
   processingPoster,
   processingVoteAverage,
 } from './renderMoviesTrending';
-import { page, backdropEl, modalFilm, cardListSearch } from './refs';
+import {
+  page,
+  backdropEl,
+  modalFilm,
+  cardListSearch,
+  searchFilmInput,
+  searchFilmForm,
+} from './refs';
+import Notiflix from 'notiflix';
 
-const searchFilmInput = document.querySelector('.header__form-input');
 searchFilmInput.addEventListener('input', liveSearch(searchFilmInput.value));
 
 export async function liveSearch(inputValue) {
@@ -27,6 +34,12 @@ export async function liveSearch(inputValue) {
   if (inputValue.length > 2) {
     cardListSearch.classList.remove('is-hidden');
     searchTopList = await fetchFilms(inputValue, page);
+    if (searchTopList.length === 0) {
+      Notiflix.Notify.failure(
+        'Search result not successful. Enter the correct movie name and try again.'
+      );
+      return;
+    }
 
     cardListSearch.insertAdjacentHTML(
       'afterbegin',
@@ -34,9 +47,9 @@ export async function liveSearch(inputValue) {
     );
   }
 
-  function clickModal(e) {
+  async function clickModal(e) {
     if (searchTopList.length > 0) {
-      let clickMovie = searchTopList.find(list => list.id == e.target.id);
+      let clickMovie = await searchTopList.find(list => list.id == e.target.id);
 
       if (document.querySelector('.film__image') !== null) {
         document.querySelector('.film__image').remove();
@@ -89,6 +102,7 @@ export async function liveSearch(inputValue) {
       cardListSearch.innerHTML = '';
       cardListSearch.classList.add('is-hidden');
       cardListSearch.removeEventListener('click', clickModal);
+      searchFilmForm.reset();
     }
   }
 
