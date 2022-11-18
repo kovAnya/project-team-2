@@ -41,7 +41,9 @@ async function searchFilm(e) {
     searchFilms = false;
     moviesElement.innerHTML = '';
     await renderMoviesTrending(answer);
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 pagination.on('afterMove', event => {

@@ -1,4 +1,3 @@
-import { fetchMoviesTrending } from './API/fetchMoviesTrending';
 import {
   searchLocalQueue,
   searchLocalWatch,
@@ -18,15 +17,7 @@ import {
   processingPoster,
   processingVoteAverage,
 } from './renderMoviesTrending';
-import {
-  page,
-  backdropEl,
-  modalFilm,
-  cardListSearch,
-  logOut,
-  cardListItem,
-} from './refs';
-import { FilmsInLocalStorage } from './usersLib';
+import { page, backdropEl, modalFilm, cardListSearch } from './refs';
 
 const searchFilmInput = document.querySelector('.header__form-input');
 searchFilmInput.addEventListener('input', liveSearch(searchFilmInput.value));
@@ -46,13 +37,6 @@ export async function liveSearch(inputValue) {
   function clickModal(e) {
     if (searchTopList) {
       let clickMovie = searchTopList.find(list => list.id == e.target.id);
-
-//       if (localStorage.getItem('Watched')) {
-//         watchedStorageLength = FilmsInLocalStorage('Watched').length;
-//       }
-//       if (localStorage.getItem('Queue')) {
-//         queueStorageLength = FilmsInLocalStorage('Queue').length;
-//       }
 
       if (document.querySelector('.film__image') !== null) {
         document.querySelector('.film__image').remove();

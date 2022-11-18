@@ -24,14 +24,11 @@ function onQueueBtnClick(obj) {
   const checkQueue = localStorage.getItem(QUEUE_KEY);
   if (checkQueue) {
     arrQueue = JSON.parse(checkQueue);
-    console.log('onQueueBtnClick ~ arrQueue', arrQueue);
   }
 
   const filmQueue = arrQueue.find(array => {
     array.id === obj.id;
-    console.log(array.id);
   });
-  console.log('onQueueBtnClick ~ filmQueue', filmQueue);
 
   if (filmQueue) {
     return;
@@ -99,7 +96,7 @@ export function searchLocalWatch(obj, btnWatch) {
       btnWatch.textContent = 'REMOVE FROM WATCHED';
     }
   } catch (error) {
-    // console.log('searchLocalWatch ~ error', error);
+    console.log(error);
   }
 }
 export function searchLocalQueue(obj, btnQueue) {
@@ -114,13 +111,12 @@ export function searchLocalQueue(obj, btnQueue) {
       btnQueue.textContent = 'REMOVE FROM QUEUE';
     }
   } catch (error) {
-    // console.log('searchLocalQueue ~ error', error);
+    console.log(error);
   }
 }
 
 export function objInfo(obj) {
   const genres_ids = obj.genres_ids;
-  console.log(genres_ids);
 }
 
 export { onWatchedBtnClick, onQueueBtnClick };
